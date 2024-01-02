@@ -6,11 +6,13 @@ import { getRestaurants } from "../data/restaurants.js"
 const restaurantOptions = getRestaurants()
 //console.log(`RestaurantOptions length: ${restaurantOptions.length}`)
 
-console.log("Restaurants:")
-console.dir(restaurantOptions)
+//console.log("Restaurants:")
+//console.dir(restaurantOptions)
 
 //this object will store the choices the user selects
-let userChoices = {}
+let userChoices = {
+  wantedFoodType:""
+}
 
 
 /*---- Cached Element References ----*/
@@ -31,7 +33,7 @@ const foodTypeChoices = document.querySelector("#food-types")
 
 startBtn.addEventListener('click', init())
 
-userFoodType.addEventListener('click', updateUserSelections(userChoices))
+userFoodType.addEventListener('change', updateUserChoices)
 
 
 
@@ -59,22 +61,40 @@ function init(){
   }
 }
 
-function updateUserSelections(userChoices){
+function updateUserChoices(evt){
 
-  userChoices.foodType=userFoodType.value
-  //console.log(`UserChoices obj: ${userChoices}`)
+  //console.log(`Event:`)
+  //console.log(this.id)
+  let prop= this.id
+
+  //userChoices.wantedFoodType=evt.target.value
 
 
+  if(prop==="food-types"){
+    userChoices[prop]=evt.target.value
+    removeRestaurantOptions(userChoices,"food-types",restaurantOptions)
+  }
+
+   console.log(`UserChoices obj:`)
+   console.dir(userChoices)
 }
 
 
 //removes restaurant options based on selections
-function removeRestaurantOptions(restaurantOptions){
+function removeRestaurantOptions(userChoices,property,restaurantOptions){
   console.log("Removing options")
+
+  for(let idx=0;idx<restaurantOptions.length;idx++){
+    
+  }
 
 }
 
-function renderFinalAnswer(){
+function updateRestaurantChoices(updatedChoices){
 
+  //updates options based on filtered array
+  restaurantOptions=updatedChoices
+
+  return restaurantOptions
 }
 
