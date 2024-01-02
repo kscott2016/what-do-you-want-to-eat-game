@@ -49,11 +49,13 @@ function init(){
     foodOptions.push(restaurantOptions[idx].foodType)
   }
 
-  console.log(`Food options are: ${foodOptions}`)
+  //console.log(`Food options are: ${foodOptions}`)
 
   for(let idx=0;idx<foodOptions.length;idx++){
     let item= document.createElement("option")
+    foodTypeChoices.appendChild(item)
     item.innerHTML = foodOptions[idx]
+    item.setAttribute("value", foodOptions[idx]);
   }
 }
 
