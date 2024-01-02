@@ -221,3 +221,12 @@ const restaurants = [
   },
 
 ]
+
+function getRestaurants() {
+  return restaurants
+}
+
+
+export {
+  getRestaurants,
+}
