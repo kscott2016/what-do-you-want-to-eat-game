@@ -121,8 +121,103 @@ const restaurants = [
     logoUrl:"https://suburbanchicagoland.com/wp-content/uploads/2021/09/IMG_2793-scaled-e1631976716613.jpg"
   },
 
-  
+  {
+    name: "KupAJoe Cafe",
+    foodType: "brunch",
+    avgPrice: 65,
+    offersTakeout:true,
+    offersCocktails:true,
+    indoorDining: true,
+    recentVisit:false,
+    logoUrl:"https://fastly.4sqi.net/img/general/600x600/77773384_g9f5aGM2dNW2goNFVGE4KnifLKQyYm7UsyKzs1nGJsA.jpg"
+  },
 
-  
+  {
+    name: "Cooper's Hawk Winery and Restaurant",
+    foodType: "multiple",
+    avgPrice: 80,
+    offersTakeout:true,
+    offersCocktails:true,
+    indoorDining: true,
+    recentVisit:false,
+    logoUrl:"https://patch.com/img/cdn20/users/22925010/20220113/064016/styles/patch_image/public/coopers-hawk___13182211043.png"
+  },
+
+  {
+    name: "Culver's",
+    foodType: "fast food",
+    avgPrice: 30,
+    offersTakeout:true,
+    offersCocktails:false,
+    indoorDining: true,
+    recentVisit:false,
+    logoUrl:"https://cdn.culvers.com/about-culvers-new/culvers-outdoor-drive-thru.jpg"
+  },
+
+  {
+    name: "Tandoori House",
+    foodType: "indian",
+    avgPrice: 50,
+    offersTakeout:true,
+    offersCocktails:false,
+    indoorDining: true,
+    recentVisit:false,
+    logoUrl:"https://static1.squarespace.com/static/540e2e30e4b0a9fac1c138ac/t/6012f0d8f95995044058fa5a/1611854046964/?format=1500w"
+  },
+
+  {
+    name: "Batter N' Berries",
+    foodType: "brunch",
+    avgPrice: 50,
+    offersTakeout:true,
+    offersCocktails:true,
+    indoorDining: true,
+    recentVisit:false,
+    logoUrl:"https://fastly.4sqi.net/img/general/600x600/77773384_g9f5aGM2dNW2goNFVGE4KnifLKQyYm7UsyKzs1nGJsA.jpg"
+  },
+
+  {
+    name: "Boka",
+    foodType: "american",
+    avgPrice: 165,
+    offersTakeout:false,
+    offersCocktails:true,
+    indoorDining: true,
+    recentVisit:false,
+    logoUrl:"https://fastly.4sqi.net/img/general/600x600/77773384_g9f5aGM2dNW2goNFVGE4KnifLKQyYm7UsyKzs1nGJsA.jpg"
+  },
+
+  {
+    name: "Fat Rosie's",
+    foodType: "mexican",
+    avgPrice: 70,
+    offersTakeout:true,
+    offersCocktails:true,
+    indoorDining: true,
+    recentVisit:false,
+    logoUrl:"https://images.getbento.com/accounts/b4b148424bd38e72d3c74dc5c074a855/media/images/53962FR_Logo-01-edit.png?w=1200&fit=fill&auto=compress,format&h=600&bg=ff5a8d&pad=100"
+  },
+
+  {
+    name: "Rosati's",
+    foodType: "italian",
+    avgPrice: 60,
+    offersTakeout:true,
+    offersCocktails:false,
+    indoorDining: false,
+    recentVisit:false,
+    logoUrl:"https://shop-logos.imgix.net/shops/13595/original/Rosati's_Google_Logo.jpg"
+  },
+
+  {
+    name: "Jersey Mike's",
+    foodType: "sandwich shop",
+    avgPrice: 30,
+    offersTakeout:true,
+    offersCocktails:false,
+    indoorDining: true,
+    recentVisit:false,
+    logoUrl:"https://fastly.4sqi.net/img/general/600x600/77773384_g9f5aGM2dNW2goNFVGE4KnifLKQyYm7UsyKzs1nGJsA.jpg"
+  },
 
 ]
