@@ -10,9 +10,9 @@ let restaurantOptions = getRestaurants()
 //console.dir(restaurantOptions)
 
 //this object will store the choices the user selects
-let userChoices = {
-  wantedFoodType:""
-}
+let userChoices = {}
+
+let userFoodResults={}
 
 
 /*---- Cached Element References ----*/
@@ -27,11 +27,13 @@ const foodOptions = []
 
 const foodTypeChoices = document.querySelector("#foodTypes")
 
-const userPriceLimit = document.querySelector("#price-range")
+const userPriceLimit = document.querySelector("#maxPrice")
 
 /*--------- Event Listeners ---------*/
 
-startBtn.addEventListener('click', init())
+startBtn.addEventListener('click', init)
+
+submitBtn.addEventListener('click', updateRestaurantOptions)
 
 foodTypeChoices.addEventListener('change', updateUserChoices)
 
@@ -61,7 +63,7 @@ function init(){
     foodTypeChoices.appendChild(item)
     item.innerHTML = foodOptions[idx]
     item.setAttribute("value", foodOptions[idx])
-   item.setAttribute("data-key", "foodType")
+   
   //console.log(`Data attribute of ${item} is ${item.getAttribute("data-key")}`)
   }
 
@@ -70,39 +72,37 @@ function init(){
 
 function updateUserChoices(evt){
 
-  console.log(`Event data attribute:`)
+  //console.log(`Event data attribute:`)
   //let option = this.getElementsByTagName("option");
 //console.log(option)
-  console.dir(`${evt.target.getAttribute('data-key')}`)
+  //console.dir(`${evt.target.getAttribute('data-key')}`)
 
   //figures out key we're selecting so we can create a property in UserChoices object
 
-  let key= this.id
-  userChoices[key]=evt.target.value
+  console.log("UPDATED")
 
-  updateRestaurantOptions(userChoices,key,restaurantOptions)
+  //let key= evt.target.id
+  userChoices[evt.target.id]=evt.target.value
+
+  //console.log("Updated user object to:")
+  //console.dir(userChoices)
+
+  //updateRestaurantOptions(userChoices,key,restaurantOptions)
   
+  return userChoices
 }
 
 //updates restaurant options based on selections
-function updateRestaurantOptions(userChoices,key,restaurantOptions){
-  console.log("Removing options")
-  console.log(`Return less than ${userChoices[key]}`)
+function updateRestaurantOptions(){
 
-  let updatedOptions={}
+  console.log(`User Choices`)
+  console.dir(userChoices)
+
+  userFoodResults  = restaurantOptions.filter((item) => 
   
+  (item.foodType===userChoices.foodTypes) && (item.avgPrice<= parseInt(userChoices.maxPrice)));
 
-  
-  //filters restaurants based on user's price
-  if(key==="price-range"){
-    updatedOptions = restaurantOptions.filter(function(item){
-    return (item.avgPrice<=parseInt(userChoices[key]))})
-    }
-
-
-
-   console.dir(updatedOptions)
-
-  return updatedOptions
+console.log("FILTERED:")
+console.dir(userFoodResults)
+ 
 }
-
