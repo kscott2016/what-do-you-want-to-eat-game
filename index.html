@@ -9,16 +9,25 @@
 </head>
 
 <body>
-  <h1>What the heck do you want to eat?</h1>
-  <p> Welcome! Ever had an issue deciding on what you want to eat? Have a frustrated and hangry partner annoyed with you because you can't make up your damn mind?</p> 
+  <div id="main">
+    <div id="welcome-message">
+      <h1>What the heck do you want to eat?</h1>
+      <p> Welcome! Ever had an issue deciding on what you want to eat? Have a frustrated and hangry partner annoyed with you because you can't make up your damn mind?</p> 
+      
+      <p>Look no further, this game finally help you find great food options and help make your hangry partner happy and fed.</p>
+
+      <button id="start-button">Start the game</button>
+    </div>
+    <div id="image-box">
+      <img class="welcome-img" src="https://media2.giphy.com/media/E87jjnSCANThe/giphy.gif?cid=6c09b9522bgasvfd6mnqcwqdpgup3lolbf8yfloy74sshrij&ep=v1_gifs_search&rid=giphy.gif&ct=g" />
   
-  <p>Look no further, this game finally help you find great food options and help make your hangry partner happy and fed.</p>
-
-  <button id="start-button">Start the game</button>
-
-  <div id="game-timer"></div>
-
+      
+    </div>
+  </div>
+  
+  
   <div id="game-container">
+    <div id="game-timer"></div>
 
     <label for="food-options">Select food type:</label>
 			<select name="food-options" id="foodTypes">
