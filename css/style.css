@@ -3,23 +3,53 @@ body{
   background-color:aliceblue;
   display: flex;
   flex-direction: column;
-  
-  
+  width:100%;
+
 }
 
-#main{
-  background-color: #fff;
+#main, #game-container {
+  
   display: flex;
   flex-direction: row;
-  /* align-items: center; */
-  /* justify-content: center; */
- width:100%;
+  flex-wrap: wrap;
+  gap:20px;
+  width:100%;
+  margin-top: 50px;
+  
+}
+#game-container{
+  display: none; 
 }
 
-#welcome-message{
+#main>div:nth-child(1), #game-container>div:nth-child(1){
+  width:50%;
+}
+
+#main>div:nth-child(2), #game-container>div:nth-child(2){
+  width:40%;
+}
+
+#welcome-message, #user-options-container{
 
   padding: 50px;
   border:solid 8px #003a75;
+  background-color: #fff;
+
+}
+
+#game-status{
+
+  background-color: #003a75;;
+  display:flex;flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+}
+
+#game-timer{
+  font-family: 'Bubblegum Sans', sans-serif;
+  font-size:50px;
+  color: #fff;;
 }
 
 h1,h2,h3{
@@ -34,22 +64,7 @@ h1{
 h2{
   font-size:30px;
 }
-p{
-  font-size:20px;
-}
 
-#main>div:nth-child(1) {
-  width:60%;
-  
-  background-color: #fff;
-  border-radius: inherit;
- 
-}
-
-#main>div:nth-child(2) {
-
-  width:40%;
-}
 
 #image-box{
 
@@ -59,22 +74,28 @@ p{
   justify-content: center;
   align-items: center;
   color: #fff;
-  gap:30px;
+  
 }
 
 .welcome-img{
 
   width:100%;
-  
+  height: auto;
 
   
 }
 
-#game-container{
-  /* display: none; */
-  
-  padding:50px;
+
+
+.user-btns{
+ 
+  margin:30px 0;
 }
+
+
+
+
+
 
 button{
   background-color: #003a75;
@@ -90,3 +111,65 @@ button:hover{
   border:solid #003a75 2px;
 }
 
+p{
+  font-size:20px;
+  margin: 20px 0;
+}
+
+label{
+  font-weight: bold;
+}
+
+input, label, select{
+
+  font-size: 20px;
+  
+}
+
+select {
+  border-right: 6px solid transparent;
+  margin-right: 5px;
+}
+
+select{
+ 
+  border-radius: 50px;
+  height:30px;
+  width:250px;
+  font-size: 20px;
+  border:1px solid #000;
+}
+
+#offersCocktails{
+  width:20px;
+  height:20px;
+}
+
+div.user-option{
+  display: flex;
+  margin-top:30px;
+  gap:20px;
+  
+}
+
+@media (max-width: 1359px) {
+
+body{
+  justify-content: center;
+  align-items: center;
+}
+
+  #main>div:nth-child(1), #game-container>div:nth-child(1), #main>div:nth-child(2), #game-container>div:nth-child(2){
+    width:100%;
+  }
+
+  #main, #game-container{
+    flex-direction: column;
+  }
+
+  #image-box{
+    justify-content: center;
+    align-items: center;
+  }
+
+}

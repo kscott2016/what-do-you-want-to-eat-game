@@ -23,7 +23,7 @@ const submitBtn = document.querySelector("#submit-button")
 
 const timeLeftMessage = document.querySelector("#gameTimer")
 
-const foodOptions = []
+let foodOptions = []
 
 const foodTypeChoices = document.querySelector("#foodTypes")
 
@@ -36,6 +36,10 @@ const userIndoorDining = document.querySelector("#offersIndoorDining")
 const userTakeout = document.querySelector("#offersTakeout")
 
 const random = document.querySelector("#random")
+
+let countdownEl = document.getElementById('game-timer')
+
+let gameContainer = document.getElementById('game-container')
 
 /*--------- Event Listeners ---------*/
 
@@ -60,6 +64,10 @@ random.addEventListener('click', selectRandomRestaurant)
 /*---- Functions ----*/
 
 function init(){
+  startGameTimer()
+  gameContainer.style.display="flex"
+  // gameContainer.classList.add("animate__animated animate__slideInDown")
+
   //generates options based on what's available in restaurantChoices
 
   //makes userChoices obj empty since initialized
@@ -73,6 +81,8 @@ function init(){
     foodOptions.push(restaurantOptions[idx].foodType)
     }
   }
+
+  console.dir(foodOptions)
 
   //loops through initial food type options from initial restaurant options
   for(let idx=0;idx<foodOptions.length;idx++){
@@ -127,6 +137,22 @@ function updateUserChoices(evt){
   }
   
   return userChoices
+}
+
+/*----------- Timer ----------*/
+
+let timeLeft= 60
+
+function startGameTimer(){
+
+let timer = setInterval(function() {
+    countdownEl.textContent = timeLeft + ' seconds remaining.'
+    timeLeft -= 1
+    if (timeLeft < 0) {
+        countdownEl.textContent = 'Finished!'
+				confetti.start(500)
+    }
+}, 1000)
 }
 
 //updates restaurant options based on selections

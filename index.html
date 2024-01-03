@@ -7,6 +7,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Bungee+Spice&display=swap" rel="stylesheet">
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
   <script defer src="./js/app.js" type="module"></script>
   <title>What the heck do you want to eat? </title>
 </head>
@@ -19,6 +23,8 @@
       
       <p>Look no further, this game finally help you find great food options and help make your hangry partner happy and fed.</p>
 
+      <p>You'll have 60 seconds to select your options.</p>
+
       <button id="start-button">Start the game</button>
     </div>
     <div id="image-box">
@@ -29,29 +35,47 @@
   
   
   <div id="game-container">
-    <div id="game-timer"></div>
+  
+    <div id="user-options-container">
+      <h2>Select your options</h2>
+        <div class="user-option">
+          <label for="food-options">Select the type of food you want:</label>
+          <select name="food-options" id="foodTypes">
+            <option value="">Select Food Type</option>
+          </select>
+        </div>
+        
+        <div class="user-option">
+          <label for="price-range">What is the max you're willing to spend (for 2 people):</label>
+          <input type="text" id="maxPrice" name="max-price">
+        </div>
+        
+        <div class="user-option">
+          <label for="cocktails">Want Cocktails?</label>
+          <input type="checkbox" name="cocktails-yes" id="offersCocktails" />
+        </div>
+        <div class="user-option"></div>
+          <div id="indoorOrTakeout">
+            <label>Would you like to dine-in or take out?</label>
+            <input type="radio" id="offersIndoorDining" value="true" name="dineinOrTakeOut" />
+            <label for="true">Dine In</label>
+            <input type="radio" id="offersTakeout" value="true" name="dineinOrTakeOut" />
+            <label for="takeout">Takeout</label>
+          </div>
+          <div class="user-btns">
+            <button id="submit-button">Submit your choices</button>
+            <button id="random">Give me a random restaurant!</button>
+          </div>
+        </div>
 
-    <label for="food-options">Select food type:</label>
-			<select name="food-options" id="foodTypes">
-					<option value="">--Please choose an option--</option>
-			</select>
-
-    <label for="price-range">Price Range:</label>
-    <input type="text" id="maxPrice" name="max-price">
-
-    <input type="checkbox" name="cocktails-yes"  id="offersCocktails" />
-    <label for="cocktails">Want Cocktails?</label>
-   
-   <div id="indoorOrTakeout">
-    <p>Would you like to dine-in or take out?</p>
-    <input type="radio" id="offersIndoorDining" value="true" name="dineinOrTakeOut"/>
-    <label for="true">Dine In</label>
-    <input type="radio" id="offersTakeout" value="true" name="dineinOrTakeOut"/>
-    <label for="takeout">Takeout</label>
-   </div>
-
-    <button id="submit-button">Submit your choices</button>
-    <button id="random">Give me a random restaurant!</button>
+        <div id="game-status">
+          <div id="game-timer"></div>
+          <div id="final-result"></div>
+          <p>Final info</p>
+        </div>
+        
+    </div>
+      
   </div>
 
 </body>
