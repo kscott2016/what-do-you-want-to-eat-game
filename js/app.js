@@ -77,35 +77,11 @@ function updateUserChoices(evt){
 
   //figures out key we're selecting so we can create a property in UserChoices object
 
-  //console.log(`This: ${evt}`)
-
-  
-
   let key= this.id
-
-  // //console.log(evt.target.value)
-
-  //   userChoices[key]=evt.target.value
-  //   console.log(`Key: ${key}`)
-  //   console.log("Current User Choices Obj:")
-  //   console.dir(userChoices)
-  //   console.log("Restaurant Options:")
-  //   console.dir(restaurantOptions)
-  //  // removeRestaurantOptions(userChoices,key,restaurantOptions)
-  //  let filteredRestaurants =restaurants.filter(restaurant=>{
-   
-  //  })
-
-   //console.log(`UserChoices obj:`)
-   //console.dir(userChoices)
-
-   /*handles price input*/
-   if(key==="price-range"){
-    userChoices[key]=evt.target.value
-    console.log(`Key: ${evt.target.value}`)
-   }
+  userChoices[key]=evt.target.value
 
   updateRestaurantOptions(userChoices,key,restaurantOptions)
+  
 }
 
 //updates restaurant options based on selections
@@ -113,10 +89,16 @@ function updateRestaurantOptions(userChoices,key,restaurantOptions){
   console.log("Removing options")
   console.log(`Return less than ${userChoices[key]}`)
 
-  let updatedOptions = restaurantOptions.filter(function(item){
-//console.log(`item:`)
-//console.dir(item)
+  let updatedOptions={}
+  
+
+  
+  //filters restaurants based on user's price
+  if(key==="price-range"){
+    updatedOptions = restaurantOptions.filter(function(item){
     return (item.avgPrice<=parseInt(userChoices[key]))})
+    }
+
 
 
    console.dir(updatedOptions)
