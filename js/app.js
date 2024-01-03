@@ -29,6 +29,13 @@ const foodTypeChoices = document.querySelector("#foodTypes")
 
 const userPriceLimit = document.querySelector("#maxPrice")
 
+const userCocktails = document.querySelector("#cocktails")
+
+const userIndoorDining = document.querySelector("#indoorDining")
+
+const userTakeout = document.querySelector("#takeout")
+
+
 /*--------- Event Listeners ---------*/
 
 startBtn.addEventListener('click', init)
@@ -38,6 +45,15 @@ submitBtn.addEventListener('click', updateRestaurantOptions)
 foodTypeChoices.addEventListener('change', updateUserChoices)
 
 userPriceLimit.addEventListener('input', updateUserChoices)
+
+userCocktails.addEventListener('change', updateUserChoices)
+
+userIndoorDining.addEventListener('click', updateUserChoices)
+
+userTakeout.addEventListener('click', updateUserChoices)
+
+
+
 
 
 /*---- Functions ----*/
@@ -100,7 +116,8 @@ function updateRestaurantOptions(){
 
   userFoodResults  = restaurantOptions.filter((item) => 
   
-  (item.foodType===userChoices.foodTypes) && (item.avgPrice<= parseInt(userChoices.maxPrice)));
+  (item.foodType===userChoices.foodTypes) && (item.avgPrice<= parseInt(userChoices.maxPrice)
+  ));
 
 console.log("FILTERED:")
 console.dir(userFoodResults)
