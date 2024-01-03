@@ -3,7 +3,7 @@
 import { getRestaurants } from "../data/restaurants.js"
 
 
-const restaurantOptions = getRestaurants()
+let restaurantOptions = getRestaurants()
 //console.log(`RestaurantOptions length: ${restaurantOptions.length}`)
 
 //console.log("Restaurants:")
@@ -23,19 +23,19 @@ const submitBtn = document.querySelector("#submit-button")
 
 const timeLeftMessage = document.querySelector("#gameTimer")
 
-const userFoodType= document.querySelector("#food-types")
-
 const foodOptions = []
 
-const foodTypeChoices = document.querySelector("#food-types")
+const foodTypeChoices = document.querySelector("#foodTypes")
+
+const userPriceLimit = document.querySelector("#price-range")
 
 /*--------- Event Listeners ---------*/
 
 startBtn.addEventListener('click', init())
 
-userFoodType.addEventListener('change', updateUserChoices)
+foodTypeChoices.addEventListener('change', updateUserChoices)
 
-
+userPriceLimit.addEventListener('input', updateUserChoices)
 
 
 /*---- Functions ----*/
@@ -46,55 +46,81 @@ function init(){
   //makes userChoices obj empty since initialized
   userChoices = {}
 
+  /*START OF FOOD OPTIONS */
+
   //initiate food types options available
   for(let idx=0;idx<restaurantOptions.length;idx++){
+    if(!foodOptions.includes((restaurantOptions[idx]).foodType)){
     foodOptions.push(restaurantOptions[idx].foodType)
+    }
   }
 
-  //console.log(`Food options are: ${foodOptions}`)
-
+  //loops through initial food type options from initial restaurant options
   for(let idx=0;idx<foodOptions.length;idx++){
     let item= document.createElement("option")
     foodTypeChoices.appendChild(item)
     item.innerHTML = foodOptions[idx]
-    item.setAttribute("value", foodOptions[idx]);
+    item.setAttribute("value", foodOptions[idx])
+   item.setAttribute("data-key", "foodType")
+  //console.log(`Data attribute of ${item} is ${item.getAttribute("data-key")}`)
   }
+
+  /*END OF FOOD OPTIONS */
 }
 
 function updateUserChoices(evt){
 
-  //console.log(`Event:`)
-  //console.log(this.id)
-  let prop= this.id
+  console.log(`Event data attribute:`)
+  //let option = this.getElementsByTagName("option");
+//console.log(option)
+  console.dir(`${evt.target.getAttribute('data-key')}`)
 
-  //userChoices.wantedFoodType=evt.target.value
+  //figures out key we're selecting so we can create a property in UserChoices object
 
+  //console.log(`This: ${evt}`)
 
-  if(prop==="food-types"){
-    userChoices[prop]=evt.target.value
-    removeRestaurantOptions(userChoices,"food-types",restaurantOptions)
-  }
+  
 
-   console.log(`UserChoices obj:`)
-   console.dir(userChoices)
+  let key= this.id
+
+  // //console.log(evt.target.value)
+
+  //   userChoices[key]=evt.target.value
+  //   console.log(`Key: ${key}`)
+  //   console.log("Current User Choices Obj:")
+  //   console.dir(userChoices)
+  //   console.log("Restaurant Options:")
+  //   console.dir(restaurantOptions)
+  //  // removeRestaurantOptions(userChoices,key,restaurantOptions)
+  //  let filteredRestaurants =restaurants.filter(restaurant=>{
+   
+  //  })
+
+   //console.log(`UserChoices obj:`)
+   //console.dir(userChoices)
+
+   /*handles price input*/
+   if(key==="price-range"){
+    userChoices[key]=evt.target.value
+    console.log(`Key: ${evt.target.value}`)
+   }
+
+  updateRestaurantOptions(userChoices,key,restaurantOptions)
 }
 
-
-//removes restaurant options based on selections
-function removeRestaurantOptions(userChoices,property,restaurantOptions){
+//updates restaurant options based on selections
+function updateRestaurantOptions(userChoices,key,restaurantOptions){
   console.log("Removing options")
+  console.log(`Return less than ${userChoices[key]}`)
 
-  for(let idx=0;idx<restaurantOptions.length;idx++){
-    
-  }
+  let updatedOptions = restaurantOptions.filter(function(item){
+//console.log(`item:`)
+//console.dir(item)
+    return (item.avgPrice<=parseInt(userChoices[key]))})
 
-}
 
-function updateRestaurantChoices(updatedChoices){
+   console.dir(updatedOptions)
 
-  //updates options based on filtered array
-  restaurantOptions=updatedChoices
-
-  return restaurantOptions
+  return updatedOptions
 }
 
