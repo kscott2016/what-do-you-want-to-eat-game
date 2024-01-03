@@ -31,10 +31,11 @@ const userPriceLimit = document.querySelector("#maxPrice")
 
 const userCocktails = document.querySelector("#offersCocktails")
 
-const userIndoorDining = document.querySelector("#indoorDining")
+const userIndoorDining = document.querySelector("#offersIndoorDining")
 
-const userTakeout = document.querySelector("#takeout")
+const userTakeout = document.querySelector("#offersTakeout")
 
+const random = document.querySelector("#random")
 
 /*--------- Event Listeners ---------*/
 
@@ -52,7 +53,7 @@ userIndoorDining.addEventListener('click', updateUserChoices)
 
 userTakeout.addEventListener('click', updateUserChoices)
 
-
+random.addEventListener('click', selectRandomRestaurant)
 
 
 
@@ -88,24 +89,38 @@ function init(){
 
 function updateUserChoices(evt){
 
+
   //figures out key we're selecting so we can create a property in UserChoices object
 
   //console.log("UPDATED")
   console.dir(userChoices)
   //console.log(`Clicked: ${evt.target.id}`)
 
-  if((evt.target.checked===true) && (evt.target.id ==="offersCocktails")){
-
-    //console.log("CHECKED")
+  /*------ Handles checkbox for cocktails-------*/
+  if((evt.target.checked) && (evt.target.id ==="offersCocktails")){
+  
     userChoices[evt.target.id]=true
   }
 
-  else if((evt.target.checked===false) && (evt.target.id ==="offersCocktails")){
-
-    //console.log("UNCHECKED")
+  else if((!(evt.target.checked)) && (evt.target.id ==="offersCocktails")){
+    console.log("No cocktails")
+   
     userChoices[evt.target.id]=false
   }
 
+   /*------- Handles Takeout and Dining in -------*/
+
+   else if((evt.target.checked===true) && ((evt.target.id ==="offersIndoorDining")|| (evt.target.id ==="offersTakeout"))){
+   
+    userChoices[evt.target.id]=true
+  }
+
+  else if((evt.target.checked===false) && ((evt.target.id ==="offersIndoorDining")|| (evt.target.id ==="offersTakeout"))){
+
+    userChoices[evt.target.id]=false
+  }
+
+  /*----- Handles other user input fields -----*/ 
   else{
     userChoices[evt.target.id]=evt.target.value
   
@@ -122,10 +137,20 @@ function updateRestaurantOptions(){
 
   userFoodResults  = restaurantOptions.filter((item) => 
   
-  (item.foodType===userChoices.foodTypes) && (item.avgPrice<= parseInt(userChoices.maxPrice)) && (item.offersCocktails === userChoices.offersCocktails)
-  )
+  (item.foodType===userChoices.foodTypes) && (item.avgPrice<= parseInt(userChoices.maxPrice)) && (item.offersCocktails === userChoices.offersCocktails) && (item.indoorDining === userChoices.indoorDining) && (item.offersTakeout === userChoices.indoorDining) )
 
+  //if no matches are found
+  console.log("No matches found! Try again or receive a random restaurant suggestion")
 console.log("FILTERED:")
 console.dir(userFoodResults)
  
+}
+
+function selectRandomRestaurant(){
+
+  let randomIdx= Math.floor(Math.random() * restaurantOptions.length);
+
+  console.dir(restaurantOptions[randomIdx])
+
+  return restaurantOptions[randomIdx]
 }
