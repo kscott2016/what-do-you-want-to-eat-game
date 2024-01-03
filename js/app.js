@@ -29,7 +29,7 @@ const foodTypeChoices = document.querySelector("#foodTypes")
 
 const userPriceLimit = document.querySelector("#maxPrice")
 
-const userCocktails = document.querySelector("#cocktails")
+const userCocktails = document.querySelector("#offersCocktails")
 
 const userIndoorDining = document.querySelector("#indoorDining")
 
@@ -88,22 +88,28 @@ function init(){
 
 function updateUserChoices(evt){
 
-  //console.log(`Event data attribute:`)
-  //let option = this.getElementsByTagName("option");
-//console.log(option)
-  //console.dir(`${evt.target.getAttribute('data-key')}`)
-
   //figures out key we're selecting so we can create a property in UserChoices object
 
-  console.log("UPDATED")
+  //console.log("UPDATED")
+  console.dir(userChoices)
+  //console.log(`Clicked: ${evt.target.id}`)
 
-  //let key= evt.target.id
-  userChoices[evt.target.id]=evt.target.value
+  if((evt.target.checked===true) && (evt.target.id ==="offersCocktails")){
 
-  //console.log("Updated user object to:")
-  //console.dir(userChoices)
+    //console.log("CHECKED")
+    userChoices[evt.target.id]=true
+  }
 
-  //updateRestaurantOptions(userChoices,key,restaurantOptions)
+  else if((evt.target.checked===false) && (evt.target.id ==="offersCocktails")){
+
+    //console.log("UNCHECKED")
+    userChoices[evt.target.id]=false
+  }
+
+  else{
+    userChoices[evt.target.id]=evt.target.value
+  
+  }
   
   return userChoices
 }
@@ -116,8 +122,8 @@ function updateRestaurantOptions(){
 
   userFoodResults  = restaurantOptions.filter((item) => 
   
-  (item.foodType===userChoices.foodTypes) && (item.avgPrice<= parseInt(userChoices.maxPrice)
-  ));
+  (item.foodType===userChoices.foodTypes) && (item.avgPrice<= parseInt(userChoices.maxPrice)) && (item.offersCocktails === userChoices.offersCocktails)
+  )
 
 console.log("FILTERED:")
 console.dir(userFoodResults)
