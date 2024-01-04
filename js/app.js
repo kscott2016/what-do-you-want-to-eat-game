@@ -88,9 +88,9 @@ function initVariables(){
   restartBtn.classList.add("hidden")
 
    //makes userChoices obj empty since initialized
-   userChoices = {}
+  userChoices = {}
 
-   startGame()
+  startGame()
 }
 
 function startGame(){
@@ -146,16 +146,16 @@ function updateUserChoices(evt){
 
   else if((!(evt.target.checked)) && (evt.target.id ==="offersCocktails")){
     console.log("No cocktails")
-   
+
     userChoices[evt.target.id]=false
   }
 
-   /*------- Handles Takeout and Dining in -------*/
+  /*------- Handles Takeout and Dining in -------*/
 
-   else if((evt.target.value==="true") && ((evt.target.id ==="offersIndoorDining")|| (evt.target.id ==="offersTakeout"))){
-   
-    userChoices[evt.target.id]=true
-    }
+  else if((evt.target.value==="true") && ((evt.target.id ==="offersIndoorDining")|| (evt.target.id ==="offersTakeout"))){
+  
+    userChoices[evt.target.id]=true    
+  }
 
   /*----- Handles other user input fields -----*/ 
   else{
