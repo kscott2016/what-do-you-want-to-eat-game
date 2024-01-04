@@ -14,6 +14,8 @@ let userChoices = {}
 
 let userFoodResults={}
 
+let winningRestaurant
+
 
 /*---- Cached Element References ----*/
 
@@ -182,6 +184,12 @@ function startGameTimer(){
 }, 1000)
 }
 
+function updateGameStatus(){
+  if(winnerSelected){
+    statusMessage.textContent=`You've selected ${winningRestaurant.name}`
+  }
+}
+
 //updates restaurant options based on selections
 function updateRestaurantOptions(){
 
@@ -207,7 +215,6 @@ let isEmpty=(obj)=>{
     render(userFoodResults)
   }
 }
-
 
 function selectRandomRestaurant(){
 
@@ -253,7 +260,7 @@ function renderWinner(evt){
   //console.log("WINNER SELECTED")
   //console.log(evt.target)
   let restaurantItem 
-  let winningRestaurant 
+  let winner
  
   
   let itemIdx= evt.target.id
@@ -268,10 +275,10 @@ function renderWinner(evt){
     //   console.dir(element)
     //   return element.name===itemName
     // })
-    winningRestaurant=userFoodResults[itemIdx]
+    winner=userFoodResults[itemIdx]
 
-    console.log("Selected Winner:")
-    console.dir(winningRestaurant)
+    //console.log("Selected Winner:")
+    //console.dir(winningRestaurant)
     
   }
   
@@ -281,13 +288,15 @@ function renderWinner(evt){
     restaurantItem.className="restautant-card"
     restaurantItem.innerHTML = 
     `
-      <img src="${winningRestaurant.logoUrl}" class="restaurant-img">
+      <img src="${winner.logoUrl}" class="restaurant-img">
       <div class="restaurant-info">
-      <h3>${winningRestaurant.name}</h3>
+      <h3>${winner.name}</h3>
       </div>`
 
       resturantsContainer.appendChild(restaurantItem)
       winnerSelected=true
+      winningRestaurant=winner
+      updateGameStatus()
 }
 
 
