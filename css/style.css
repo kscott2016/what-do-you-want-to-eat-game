@@ -68,8 +68,9 @@ h2{
   font-size:30px;
 }
 
-h2#game-message{
-  color:#fff
+#game-message{
+  color:#fff;
+  text-align:center;
 }
 
 #image-box{

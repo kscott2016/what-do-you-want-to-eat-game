@@ -37,7 +37,8 @@ const userIndoorDining = document.querySelector("#offersIndoorDining")
 
 const userTakeout = document.querySelector("#offersTakeout")
 
-const random = document.querySelector("#random")
+//declaring variable to button in a condition
+let random 
 
 let gameTimer = document.getElementById('game-timer')
 
@@ -69,22 +70,12 @@ userTakeout.addEventListener('click', updateUserChoices)
 
 resturantsContainer.addEventListener('click',renderWinner)
 
-random.addEventListener('click', selectRandomRestaurant)
-
 restartBtn.addEventListener('click', restartGame )
-//random.addEventListener('click', selectRandomRestaurant)
-
-
 
 /*---- Functions ----*/
 
 function initVariables(){
-    //re initialize items
-  statusMessage.textContent=''
-  resturantsContainer.textContent=''
-  gameTimer.textContent=''
-  gameTimer.classList.add('inactive')
-  gameTimer.classList.remove('animate__animated','animate__bounceIn', 'animate__delay-1s')
+ 
   restartBtn.classList.add("hidden")
 
    //makes userChoices obj empty since initialized
@@ -95,6 +86,7 @@ function initVariables(){
 
 function startGame(){
   
+  startBtn.classList.add("hidden")
   displayGameContainer(gameContainer)
   startGameTimer()
   
@@ -171,8 +163,8 @@ function startGameTimer(){
 
   let timeLeft= 60
 
-  gameTimer.classList.remove('inactive')
-  gameTimer.classList.add('animate__animated','animate__bounceIn', 'animate__delay-1s')
+  //.classList.remove('inactive')
+  //gameTimer.classList.add('animate__animated','animate__bounceIn', 'animate__delay-1s')
 
   let timer = setInterval(function() {
     gameTimer.textContent = timeLeft + ' seconds'
@@ -195,7 +187,8 @@ function startGameTimer(){
     }
     else if (timeLeft === 0) {
       gameTimer.textContent = 'Times up!'
-      clearInterval(timer);
+      clearInterval(timer)
+      console.log(timer)
       updateGameStatus()
     }
 
@@ -219,15 +212,29 @@ function updateGameStatus(timeLeft){
     statusMessage.innerHTML=`<img src="https://i.pinimg.com/originals/b8/20/d2/b820d2ca59e7ff357d11e1cfa9a896c1.gif" class="loser-img animate__animated animate__zoomInLeft"><h3>Halfway done and still no decision, shame</h3>`
   }
 
+  //if user fields do not match to any resturant 
+  else if(userFoodResults.length===0){
+
+    statusMessage.innerHTML=`<h3>No matches found! Try again or receive a random restaurant suggestion</h3><button id="random">Select a random restaurant?</button><img src="https://media2.giphy.com/media/hyyV7pnbE0FqLNBAzs/giphy.gif" class="loser-img animate__animated animate__zoomInLeft">`
+
+    random = document.querySelector("#random")
+    random.addEventListener('click', selectRandomRestaurant)
+
+    console.log(`random: `, random)
+
+  
+
+  }
+
   else{
     
     // statusMessage.textContent="You were too slow to pick and place. Now you and your partner are starving!"
 
-     statusMessage.innerHTML= `<div id="loser-message"><h3>You were too slow to pick a place. Now you and your partner are starving!</h3>
+    statusMessage.innerHTML= `<div id="loser-message"><h3>You were too slow to pick a place. Now you and your partner are starving!</h3>
 
-     <img src="https://media1.giphy.com/media/3ohzdNYjPSSEhSxF8Q/giphy.gif" class="loser-img animate__animated animate__zoomInLeft"></div>`
+    <img src="https://media1.giphy.com/media/3ohzdNYjPSSEhSxF8Q/giphy.gif" class="loser-img animate__animated animate__zoomInLeft"></div>`
 
-     restartBtn.classList.remove("hidden")
+    restartBtn.classList.remove("hidden")
   }
 
   
@@ -249,7 +256,10 @@ function updateRestaurantOptions(){
   }
 
   if(isEmpty(userFoodResults)){
-    //console.log("No matches found! Try again or receive a random restaurant suggestion")
+    console.log("No matches found! Try again or receive a random restaurant suggestion")
+
+    updateGameStatus()
+    
 
   }
   else{
@@ -328,18 +338,27 @@ function renderWinner(evt){
 }
 
 function restartGame(){
+
+   //re-initialize items
+  statusMessage.textContent=''
+  resturantsContainer.textContent=''
+  gameTimer.textContent=''
+  foodOptions=[]
+
+
   //clear the dropdownn node list of food options
   console.log("Clearing food type options")
-  console.dir(foodTypeOptions)
+  console.log("All of the current options: ",foodTypeOptions)
   console.log(`Food Type Options Length: ${foodTypeOptions.length}`)
-  if(foodOptions.length>0){
-    for(const foodOption of foodTypeOptions){
-      foodOption.parentNode.removeChild(foodOption)
+  if(foodTypeOptions.length>0){
+    for(let idx=foodTypeOptions.options.length-1;idx>=0;idx--){
+      console.log("The option is:",foodTypeOptions[idx])
+      foodTypeOptions.remove(idx)
     }
-    foodTypeOptions=[]
   }
-
-  //call initVariables
+  
   initVariables()
+
+  console.log("Foodtype options length: ", foodTypeOptions.length)
 
 }
