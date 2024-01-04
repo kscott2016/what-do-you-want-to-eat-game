@@ -125,7 +125,7 @@ const restaurants = [
     name: "KupAJoe Cafe",
     foodType: "brunch",
     avgPrice: 65,
-    offersTakeout:false,
+    offersTakeout:true,
     offersCocktails:true,
     offersIndoorDining: true,
     recentVisit:false,

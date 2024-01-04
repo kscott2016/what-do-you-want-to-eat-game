@@ -92,11 +92,9 @@ function init(){
     foodTypeChoices.appendChild(item)
     item.innerHTML = foodOptions[idx]
     item.setAttribute("value", foodOptions[idx])
-   
-  //console.log(`Data attribute of ${item} is ${item.getAttribute("data-key")}`)
-  }
 
   /*END OF FOOD OPTIONS */
+  }
 }
 
 function displayGameContainer(gameContainer){
@@ -116,9 +114,8 @@ function updateUserChoices(evt){
 
   //figures out key we're selecting so we can create a property in UserChoices object
 
-  //console.log("UPDATED")
-  console.dir(userChoices)
-  console.log("Clicked:" , evt.target)
+  //console.dir(userChoices)
+  //console.log("Clicked:" , evt.target)
 
   /*------ Handles checkbox for cocktails-------*/
   if((evt.target.checked) && (evt.target.id ==="offersCocktails")){
@@ -137,12 +134,7 @@ function updateUserChoices(evt){
    else if((evt.target.value==="true") && ((evt.target.id ==="offersIndoorDining")|| (evt.target.id ==="offersTakeout"))){
    
     userChoices[evt.target.id]=true
-  }
-
-  // else if((evt.target.checked===false) && ((evt.target.id ==="offersIndoorDining")|| (evt.target.id ==="offersTakeout"))){
-
-  //   userChoices[evt.target.id]=false
-  // }
+    }
 
   /*----- Handles other user input fields -----*/ 
   else{
@@ -161,7 +153,7 @@ function startGameTimer(){
   gameTimer.classList.remove('inactive')
   gameTimer.classList.add('animate__animated','animate__bounceIn', 'animate__delay-1s')
 
-let timer = setInterval(function() {
+  let timer = setInterval(function() {
     gameTimer.textContent = timeLeft + ' seconds'
     timeLeft -= 1
 
@@ -182,32 +174,35 @@ let timer = setInterval(function() {
 //updates restaurant options based on selections
 function updateRestaurantOptions(){
 
-  console.log(`User Choices`)
-  console.dir(userChoices)
+  //console.log(`User Choices`)
+  //console.dir(userChoices)
 
   userFoodResults  = restaurantOptions.filter((item) => {
 
-    console.log("UserChoices:", userChoices.hasOwnProperty('offersTakeout'))
-
-    console.log("Item:", item)
-
-  return (item.foodType===userChoices.foodTypes) && (item.avgPrice<= parseInt(userChoices.maxPrice)) && (item.offersCocktails === userChoices.offersCocktails)&&((userChoices.hasOwnProperty('offersTakeout')&& item.offersTakeout)|| !userChoices.hasOwnProperty('offersTakeout')) && ((userChoices.hasOwnProperty('offersIndoorDining')&& item.offersIndoorDining)|| !userChoices.hasOwnProperty('offersIndoorDining'))}
+  return (item.foodType===userChoices.foodTypes) && (item.avgPrice<= parseInt(userChoices.maxPrice)) && ((item.offersCocktails === userChoices.offersCocktails|| !userChoices.hasOwnProperty('offersCocktails')))&&((userChoices.hasOwnProperty('offersTakeout')&& item.offersTakeout)|| !userChoices.hasOwnProperty('offersTakeout')) && ((userChoices.hasOwnProperty('offersIndoorDining')&& item.offersIndoorDining)|| !userChoices.hasOwnProperty('offersIndoorDining'))}
   
   )
-
-
-
   //if no matches are found
-  //console.log("No matches found! Try again or receive a random restaurant suggestion")
-console.log("FILTERED:")
-console.dir(userFoodResults)
+let isEmpty=(obj)=>{
  
-renderRestaurants(userFoodResults)
+  return Object.keys(obj).length === 0 
 }
+ 
+
+  if(isEmpty(userFoodResults)){
+    console.log("No matches found! Try again or receive a random restaurant suggestion")
+  }
+  else{
+    renderRestaurants(userFoodResults)
+  }
+
+  
+}
+ 
 
 function selectRandomRestaurant(){
 
-  let randomIdx= Math.floor(Math.random() * restaurantOptions.length);
+  let randomIdx= Math.floor(Math.random() * restaurantOptions.length)
 
   console.dir(restaurantOptions[randomIdx])
 
@@ -219,16 +214,6 @@ function selectRandomRestaurant(){
 
 function renderRestaurants(userFoodResults){
 
-
   console.dir(userFoodResults)
-
-  // let restaurantImgUrl =""
-
-  // for(let idx=0; idx<userFoodResults.length;idx++){
-
-  //   restaurantImgUrl=userFoodResults[idx].
-  //}
-  
-  
 
 }
