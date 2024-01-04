@@ -10,8 +10,6 @@ let userChoices = {}
 
 let userFoodResults={}
 
-let foodOptionsCreated= false
-
 let winningRestaurant
 
 
@@ -343,8 +341,13 @@ function restartGame(){
   statusMessage.textContent=''
   resturantsContainer.textContent=''
   gameTimer.textContent=''
-  foodOptions=[]
+  foodTypeChoices.value=''
+  userPriceLimit.value=''
+  userCocktails.checked=false
+  userIndoorDining.checked= false
+  userTakeout.checked= false
 
+  foodOptions=[]
 
   //clear the dropdownn node list of food options
   console.log("Clearing food type options")
