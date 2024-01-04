@@ -82,6 +82,9 @@ function initVariables(){
     //re initialize items
   statusMessage.textContent=''
   resturantsContainer.textContent=''
+  gameTimer.textContent=''
+  gameTimer.classList.add('inactive')
+  gameTimer.classList.remove('animate__animated','animate__bounceIn', 'animate__delay-1s')
   restartBtn.classList.add("hidden")
 
    //makes userChoices obj empty since initialized
@@ -166,7 +169,7 @@ function updateUserChoices(evt){
 
 function startGameTimer(){
 
-  let timeLeft= 35
+  let timeLeft= 60
 
   gameTimer.classList.remove('inactive')
   gameTimer.classList.add('animate__animated','animate__bounceIn', 'animate__delay-1s')
@@ -250,6 +253,7 @@ function updateRestaurantOptions(){
 
   }
   else{
+    console.dir(userFoodResults)
     render(userFoodResults)
   }
 }

@@ -1,0 +1,3 @@
+<p>What the heck do you want to eat is the solution for indecisive folks people and their hangry partners! Users will be asked to complete a field with options of things they would like to eat. Those solutions will be used to filter restaurant optiiions from an array of objects. To speed things up, they must make a selection within 60 seconds, or they lose! If not match is found with the user's inputs, a random restaurant will be displayed. </p>
+
+<p><a href="https://what-do-you-want-to-eat-game.netlify.app/" target="blank">Play the game here</p>
