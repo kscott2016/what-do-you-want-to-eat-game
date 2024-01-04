@@ -27,6 +27,8 @@ let foodOptions = []
 
 const foodTypeChoices = document.querySelector("#foodTypes")
 
+let foodTypeOptions = document.getElementsByClassName('foodTypeOption')
+
 const userPriceLimit = document.querySelector("#maxPrice")
 
 const userCocktails = document.querySelector("#offersCocktails")
@@ -49,9 +51,9 @@ const resturantsContainer= document.getElementById('restaurants-container')
 
 /*--------- Event Listeners ---------*/
 
-startBtn.addEventListener('click', init)
+//restartBtn.addEventListener('click', initVariables )
 
-restartBtn.addEventListener('click', init)
+startBtn.addEventListener('click', restartGame)
 
 submitBtn.addEventListener('click', updateRestaurantOptions)
 
@@ -69,47 +71,41 @@ resturantsContainer.addEventListener('click',renderWinner)
 
 random.addEventListener('click', selectRandomRestaurant)
 
-
+restartBtn.addEventListener('click', restartGame )
 //random.addEventListener('click', selectRandomRestaurant)
 
 
 
 /*---- Functions ----*/
 
-function init(){
+function initVariables(){
+    //re initialize items
+  statusMessage.textContent=''
+  resturantsContainer.textContent=''
+  restartBtn.classList.add("hidden")
+
+   //makes userChoices obj empty since initialized
+   userChoices = {}
+
+   startGame()
+}
+
+function startGame(){
   
   displayGameContainer(gameContainer)
   startGameTimer()
-  foodOptions= []
-
-  statusMessage.textContent=''
-  resturantsContainer.textContent=''
-
-  restartBtn.classList.add("hidden")
-
-
+  
   //generates options based on what's available in restaurantChoices
-
-  //makes userChoices obj empty since initialized
-  userChoices = {}
 
   /*START OF FOOD OPTIONS */
 
   //initiate food types options available
-  console.dir(foodOptions)
-
   
   for(let idx=0;idx<restaurantOptions.length;idx++){
     if(!foodOptions.includes((restaurantOptions[idx]).foodType)){
       foodOptions.push(restaurantOptions[idx].foodType)
     }
   }
-    
-  
-
-
-
-  console.dir(foodOptions)
 
   //loops through initial food type options from initial restaurant options
   
@@ -118,6 +114,7 @@ function init(){
     foodTypeChoices.appendChild(item)
     item.innerHTML = foodOptions[idx]
     item.setAttribute("value", foodOptions[idx])
+    item.classList.add("foodTypeOption")
 
   /*END OF FOOD OPTIONS */
   }
@@ -169,7 +166,7 @@ function updateUserChoices(evt){
 
 function startGameTimer(){
 
-  let timeLeft= 60
+  let timeLeft= 35
 
   gameTimer.classList.remove('inactive')
   gameTimer.classList.add('animate__animated','animate__bounceIn', 'animate__delay-1s')
@@ -179,7 +176,19 @@ function startGameTimer(){
     timeLeft -= 1
 
     if(timeLeft>0 && timeLeft<10){
-      gameTimer.style.color='red' 
+      gameTimer.style.color='red'
+    }
+
+    else if(timeLeft ===10)
+    {
+      updateGameStatus(timeLeft)
+
+    }
+
+    else if(timeLeft ===30)
+    {
+      updateGameStatus(timeLeft)
+
     }
     else if (timeLeft === 0) {
       gameTimer.textContent = 'Times up!'
@@ -190,21 +199,35 @@ function startGameTimer(){
 }, 1000)
 }
 
-function updateGameStatus(){
+function updateGameStatus(timeLeft){
   if(winnerSelected){
     statusMessage.textContent=`You've selected ${winningRestaurant.name}`
+
+    restartBtn.classList.remove("hidden")
+  }
+
+  else if(timeLeft===10){
+
+    statusMessage.innerHTML=`<img src="https://media0.giphy.com/media/fwcGzF1l2cILe/giphy.gif" class="loser-img animate__animated animate__zoomInLeft"><h3>All these options and you still can't pick one?</h3>`
+    
+  }
+
+  else if(timeLeft===30){
+    statusMessage.innerHTML=`<img src="https://i.pinimg.com/originals/b8/20/d2/b820d2ca59e7ff357d11e1cfa9a896c1.gif" class="loser-img animate__animated animate__zoomInLeft"><h3>Halfway done and still no decision, shame</h3>`
   }
 
   else{
     
     // statusMessage.textContent="You were too slow to pick and place. Now you and your partner are starving!"
 
-     statusMessage.innerHTML= `<div id="loser-message"><h3>You were too slow to pick and place. Now you and your partner are starving!</h3>
+     statusMessage.innerHTML= `<div id="loser-message"><h3>You were too slow to pick a place. Now you and your partner are starving!</h3>
 
-     <img src="https://media1.giphy.com/media/3ohzdNYjPSSEhSxF8Q/giphy.gif" class="loser-img"></img></div>`
+     <img src="https://media1.giphy.com/media/3ohzdNYjPSSEhSxF8Q/giphy.gif" class="loser-img animate__animated animate__zoomInLeft"></div>`
+
+     restartBtn.classList.remove("hidden")
   }
 
-  restartBtn.classList.remove("hidden")
+  
   
 }
 
@@ -278,14 +301,9 @@ function renderWinner(evt){
 
   let itemIdx= evt.target.id
 
-  console.log("The id is: "+itemIdx)
-
   if(evt.target.classList.contains('winning-choice')){
 
-    console.log(evt.target)
-
     winner=userFoodResults[itemIdx]
-    
   }
   
   resturantsContainer.innerHTML = ''
@@ -305,4 +323,19 @@ function renderWinner(evt){
       updateGameStatus()
 }
 
+function restartGame(){
+  //clear the dropdownn node list of food options
+  console.log("Clearing food type options")
+  console.dir(foodTypeOptions)
+  console.log(`Food Type Options Length: ${foodTypeOptions.length}`)
+  if(foodOptions.length>0){
+    for(const foodOption of foodTypeOptions){
+      foodOption.parentNode.removeChild(foodOption)
+    }
+    foodTypeOptions=[]
+  }
 
+  //call initVariables
+  initVariables()
+
+}

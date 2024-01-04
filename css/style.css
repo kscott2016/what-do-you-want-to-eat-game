@@ -186,6 +186,12 @@ img.restaurant-img{
 
 }
 
+#game-message{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 #loser-message{
 
   text-align: center;
