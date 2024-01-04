@@ -67,6 +67,8 @@ userTakeout.addEventListener('click', updateUserChoices)
 
 resturantsContainer.addEventListener('click',renderWinner)
 
+random.addEventListener('click', selectRandomRestaurant)
+
 
 //random.addEventListener('click', selectRandomRestaurant)
 
@@ -81,6 +83,8 @@ function init(){
   foodOptions= []
 
   statusMessage.textContent=''
+  resturantsContainer.textContent=''
+
   restartBtn.classList.add("hidden")
 
 
@@ -108,7 +112,7 @@ function init(){
   console.dir(foodOptions)
 
   //loops through initial food type options from initial restaurant options
-  if(foodOptions.length ===0){
+  
   for(let idx=0;idx<foodOptions.length;idx++){
     let item= document.createElement("option")
     foodTypeChoices.appendChild(item)
@@ -117,19 +121,13 @@ function init(){
 
   /*END OF FOOD OPTIONS */
   }
-}
+
 }
 
 function displayGameContainer(gameContainer){
 
-  //gameContainer.style.display="flex"
-
   gameContainer.classList.remove('inactive')
   gameContainer.classList.add('active-game-container', 'animate__animated', 'animate__zoomInDown')
-
-
-  
-  //gameContainer.style.setProperty('--animate-duration', '0.5s')
 }
 
 function updateUserChoices(evt){
@@ -204,9 +202,10 @@ function updateGameStatus(){
      statusMessage.innerHTML= `<div id="loser-message"><h3>You were too slow to pick and place. Now you and your partner are starving!</h3>
 
      <img src="https://media1.giphy.com/media/3ohzdNYjPSSEhSxF8Q/giphy.gif" class="loser-img"></img></div>`
-
-     restartBtn.classList.remove("hidden")
   }
+
+  restartBtn.classList.remove("hidden")
+  
 }
 
 //updates restaurant options based on selections
@@ -218,14 +217,14 @@ function updateRestaurantOptions(){
   
   )
   //if no matches are found
-let isEmpty=(obj)=>{
- 
-  return Object.keys(obj).length === 0 
-}
- 
+  let isEmpty=(obj)=>{
+  
+    return Object.keys(obj).length === 0 
+  }
 
   if(isEmpty(userFoodResults)){
-    console.log("No matches found! Try again or receive a random restaurant suggestion")
+    //console.log("No matches found! Try again or receive a random restaurant suggestion")
+
   }
   else{
     render(userFoodResults)
@@ -236,10 +235,13 @@ function selectRandomRestaurant(){
 
   let randomIdx= Math.floor(Math.random() * restaurantOptions.length)
 
-  console.dir(restaurantOptions[randomIdx])
+  let randomRestaurantList = []
+  randomRestaurantList.push(restaurantOptions[randomIdx])
+
+  userFoodResults=randomRestaurantList
 
 
-  render(restaurantOptions[randomIdx])
+  render(userFoodResults)
 
   //return restaurantOptions[randomIdx]
 }
@@ -251,50 +253,38 @@ function render(restaurantList){
   let restaurantItem
 
   resturantsContainer.innerHTML = ''
+    restaurantList.forEach((result,idx) => {
+      //console.log("Item: " + result.name)
+      console.dir(result)
+    restaurantItem= document.createElement('div')
+      restaurantItem.className="restautant-card"
+      restaurantItem.innerHTML = 
+      `
+        <img src="${result.logoUrl}" class="restaurant-img">
+        <div class="restaurant-info">
+        <h3>${result.name}</h3>
+        <button class="winning-choice" id=${idx}>I choose this place</button>
+        </div>`
 
-  restaurantList.forEach((result,idx) => {
-    //console.log("Item: " + result.name)
-    console.dir(result)
-   restaurantItem= document.createElement('div')
-    restaurantItem.className="restautant-card"
-    restaurantItem.id=result.name
-    restaurantItem.innerHTML = 
-    `
-      <img src="${result.logoUrl}" class="restaurant-img">
-      <div class="restaurant-info">
-      <h3>${result.name}</h3>
-      <button class="winning-choice" id=${idx}>I choose this place</button>
-      </div>`
-
-      resturantsContainer.appendChild(restaurantItem)
-  })
-
+        resturantsContainer.appendChild(restaurantItem)
+    })
+  
 }
 
 function renderWinner(evt){
 
-  //console.log("WINNER SELECTED")
-  //console.log(evt.target)
   let restaurantItem 
   let winner
- 
-  
+
   let itemIdx= evt.target.id
-  //console.log("Id: "+ evt.target.id)
-  //console.log("Type: "+ typeof(itemName))
+
+  console.log("The id is: "+itemIdx)
 
   if(evt.target.classList.contains('winning-choice')){
 
     console.log(evt.target)
-    //console.dir(restaurantOptions)
-    // winningRestaurant = userFoodResults.find(element => {
-    //   console.dir(element)
-    //   return element.name===itemName
-    // })
-    winner=userFoodResults[itemIdx]
 
-    //console.log("Selected Winner:")
-    //console.dir(winningRestaurant)
+    winner=userFoodResults[itemIdx]
     
   }
   
