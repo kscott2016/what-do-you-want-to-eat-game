@@ -21,8 +21,6 @@ const startBtn = document.querySelector("#start-button")
 
 const submitBtn = document.querySelector("#submit-button")
 
-const timeLeftMessage = document.querySelector("#gameTimer")
-
 let foodOptions = []
 
 const foodTypeChoices = document.querySelector("#foodTypes")
@@ -40,6 +38,10 @@ const random = document.querySelector("#random")
 let countdownEl = document.getElementById('game-timer')
 
 let gameContainer = document.getElementById('game-container')
+
+let statusMessage = document.getElementById('game-message')
+
+let resturantsSection= document.getElementById('restaurant-cards')
 
 /*--------- Event Listeners ---------*/
 
@@ -104,7 +106,7 @@ function updateUserChoices(evt){
 
   //console.log("UPDATED")
   console.dir(userChoices)
-  //console.log(`Clicked: ${evt.target.id}`)
+  console.log("Clicked:" , evt.target)
 
   /*------ Handles checkbox for cocktails-------*/
   if((evt.target.checked) && (evt.target.id ==="offersCocktails")){
@@ -120,15 +122,15 @@ function updateUserChoices(evt){
 
    /*------- Handles Takeout and Dining in -------*/
 
-   else if((evt.target.checked===true) && ((evt.target.id ==="offersIndoorDining")|| (evt.target.id ==="offersTakeout"))){
+   else if((evt.target.value==="true") && ((evt.target.id ==="offersIndoorDining")|| (evt.target.id ==="offersTakeout"))){
    
     userChoices[evt.target.id]=true
   }
 
-  else if((evt.target.checked===false) && ((evt.target.id ==="offersIndoorDining")|| (evt.target.id ==="offersTakeout"))){
+  // else if((evt.target.checked===false) && ((evt.target.id ==="offersIndoorDining")|| (evt.target.id ==="offersTakeout"))){
 
-    userChoices[evt.target.id]=false
-  }
+  //   userChoices[evt.target.id]=false
+  // }
 
   /*----- Handles other user input fields -----*/ 
   else{
@@ -136,7 +138,6 @@ function updateUserChoices(evt){
   
   }
   
-  return userChoices
 }
 
 /*----------- Timer ----------*/
@@ -150,7 +151,7 @@ let timer = setInterval(function() {
     timeLeft -= 1
     if (timeLeft < 0) {
         countdownEl.textContent = 'Finished!'
-				confetti.start(500)
+				
     }
 }, 1000)
 }
@@ -161,15 +162,24 @@ function updateRestaurantOptions(){
   console.log(`User Choices`)
   console.dir(userChoices)
 
-  userFoodResults  = restaurantOptions.filter((item) => 
+  userFoodResults  = restaurantOptions.filter((item) => {
+
+    console.log("UserChoices:", userChoices.hasOwnProperty('offersTakeout'))
+
+    console.log("Item:", item)
+
+  return (item.foodType===userChoices.foodTypes) && (item.avgPrice<= parseInt(userChoices.maxPrice)) && (item.offersCocktails === userChoices.offersCocktails)&&((userChoices.hasOwnProperty('offersTakeout')&& item.offersTakeout)|| !userChoices.hasOwnProperty('offersTakeout')) && ((userChoices.hasOwnProperty('offersIndoorDining')&& item.offersIndoorDining)|| !userChoices.hasOwnProperty('offersIndoorDining'))}
   
-  (item.foodType===userChoices.foodTypes) && (item.avgPrice<= parseInt(userChoices.maxPrice)) && (item.offersCocktails === userChoices.offersCocktails) && (item.indoorDining === userChoices.indoorDining) && (item.offersTakeout === userChoices.indoorDining) )
+  )
+
+
 
   //if no matches are found
-  console.log("No matches found! Try again or receive a random restaurant suggestion")
+  //console.log("No matches found! Try again or receive a random restaurant suggestion")
 console.log("FILTERED:")
 console.dir(userFoodResults)
  
+renderRestaurants(userFoodResults)
 }
 
 function selectRandomRestaurant(){
@@ -178,5 +188,24 @@ function selectRandomRestaurant(){
 
   console.dir(restaurantOptions[randomIdx])
 
-  return restaurantOptions[randomIdx]
+
+  renderRestaurants(restaurantOptions[randomIdx])
+
+  //return restaurantOptions[randomIdx]
+}
+
+function renderRestaurants(userFoodResults){
+
+
+  console.dir(userFoodResults)
+
+  // let restaurantImgUrl =""
+
+  // for(let idx=0; idx<userFoodResults.length;idx++){
+
+  //   restaurantImgUrl=userFoodResults[idx].
+  //}
+  
+  
+
 }
