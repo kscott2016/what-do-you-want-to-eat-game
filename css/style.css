@@ -7,7 +7,11 @@ body{
 
 }
 
-#main, #game-container {
+.inactive{
+  display: none; 
+}
+
+#main, .active-game-container {
   
   display: flex;
   flex-direction: row;
@@ -15,11 +19,9 @@ body{
   gap:20px;
   width:100%;
   margin-top: 50px;
-  
+ 
 }
-#game-container{
-  display: none; 
-}
+
 
 #main>div:nth-child(1), #game-container>div:nth-child(1){
   width:50%;

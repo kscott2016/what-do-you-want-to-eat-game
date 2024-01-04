@@ -35,7 +35,7 @@ const userTakeout = document.querySelector("#offersTakeout")
 
 const random = document.querySelector("#random")
 
-let countdownEl = document.getElementById('game-timer')
+let gameTimer = document.getElementById('game-timer')
 
 let gameContainer = document.getElementById('game-container')
 
@@ -66,9 +66,9 @@ random.addEventListener('click', selectRandomRestaurant)
 /*---- Functions ----*/
 
 function init(){
+  
+  displayGameContainer(gameContainer)
   startGameTimer()
-  gameContainer.style.display="flex"
-  // gameContainer.classList.add("animate__animated animate__slideInDown")
 
   //generates options based on what's available in restaurantChoices
 
@@ -97,6 +97,18 @@ function init(){
   }
 
   /*END OF FOOD OPTIONS */
+}
+
+function displayGameContainer(gameContainer){
+
+  //gameContainer.style.display="flex"
+
+  gameContainer.classList.remove('inactive')
+  gameContainer.classList.add('active-game-container', 'animate__animated', 'animate__zoomInDown')
+
+
+  
+  //gameContainer.style.setProperty('--animate-duration', '0.5s')
 }
 
 function updateUserChoices(evt){
@@ -146,13 +158,24 @@ let timeLeft= 60
 
 function startGameTimer(){
 
+  gameTimer.classList.remove('inactive')
+  gameTimer.classList.add('animate__animated','animate__bounceIn', 'animate__delay-1s')
+
 let timer = setInterval(function() {
-    countdownEl.textContent = timeLeft + ' seconds remaining.'
+    gameTimer.textContent = timeLeft + ' seconds'
     timeLeft -= 1
-    if (timeLeft < 0) {
-        countdownEl.textContent = 'Finished!'
-				
+
+    if(timeLeft>0 && timeLeft<10){
+      gameTimer.style.color='red'
+      
     }
+
+    if (timeLeft === 0) {
+      gameTimer.textContent = 'Finished!'
+      clearInterval(timer);
+    }
+    gameTimer.classList.remove('animate__bounceIn')
+
 }, 1000)
 }
 
