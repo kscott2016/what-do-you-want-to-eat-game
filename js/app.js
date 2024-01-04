@@ -41,7 +41,9 @@ let gameContainer = document.getElementById('game-container')
 
 let statusMessage = document.getElementById('game-message')
 
-let resturantsContainer= document.getElementById('restaurants-container')
+let winnerSelected =false
+
+const resturantsContainer= document.getElementById('restaurants-container')
 
 /*--------- Event Listeners ---------*/
 
@@ -58,6 +60,9 @@ userCocktails.addEventListener('change', updateUserChoices)
 userIndoorDining.addEventListener('click', updateUserChoices)
 
 userTakeout.addEventListener('click', updateUserChoices)
+
+resturantsContainer.addEventListener('click',renderWinner)
+
 
 //random.addEventListener('click', selectRandomRestaurant)
 
@@ -166,6 +171,12 @@ function startGameTimer(){
       gameTimer.textContent = 'Finished!'
       clearInterval(timer);
     }
+
+    if(timeLeft>0 && winnerSelected){
+      clearInterval(timer);
+
+    }
+
     gameTimer.classList.remove('animate__bounceIn')
 
 }, 1000)
@@ -195,22 +206,22 @@ let isEmpty=(obj)=>{
   else{
     render(userFoodResults)
   }
-
 }
 
-// function selectRandomRestaurant(){
 
-//   let randomIdx= Math.floor(Math.random() * restaurantOptions.length)
+function selectRandomRestaurant(){
 
-//   console.dir(restaurantOptions[randomIdx])
+  let randomIdx= Math.floor(Math.random() * restaurantOptions.length)
+
+  console.dir(restaurantOptions[randomIdx])
 
 
-//   render(restaurantOptions[randomIdx])
+  render(restaurantOptions[randomIdx])
 
-//   //return restaurantOptions[randomIdx]
-// }
+  //return restaurantOptions[randomIdx]
+}
 
-function render(userFoodResults){
+function render(restaurantList){
 
   //console.log("render func reached")
 
@@ -218,22 +229,65 @@ function render(userFoodResults){
 
   resturantsContainer.innerHTML = ''
 
-  userFoodResults.forEach((result) => {
+  restaurantList.forEach((result,idx) => {
     //console.log("Item: " + result.name)
-    
+    console.dir(result)
    restaurantItem= document.createElement('div')
     restaurantItem.className="restautant-card"
+    restaurantItem.id=result.name
     restaurantItem.innerHTML = 
     `
       <img src="${result.logoUrl}" class="restaurant-img">
       <div class="restaurant-info">
       <h3>${result.name}</h3>
-      <button class="winning-choice">I chose this place</button>
+      <button class="winning-choice" id=${idx}>I choose this place</button>
       </div>`
 
       resturantsContainer.appendChild(restaurantItem)
   })
 
+}
+
+function renderWinner(evt){
+
+  //console.log("WINNER SELECTED")
+  //console.log(evt.target)
+  let restaurantItem 
+  let winningRestaurant 
+ 
+  
+  let itemIdx= evt.target.id
+  //console.log("Id: "+ evt.target.id)
+  //console.log("Type: "+ typeof(itemName))
+
+  if(evt.target.classList.contains('winning-choice')){
+
+    console.log(evt.target)
+    //console.dir(restaurantOptions)
+    // winningRestaurant = userFoodResults.find(element => {
+    //   console.dir(element)
+    //   return element.name===itemName
+    // })
+    winningRestaurant=userFoodResults[itemIdx]
+
+    console.log("Selected Winner:")
+    console.dir(winningRestaurant)
+    
+  }
+  
+  resturantsContainer.innerHTML = ''
+
+  restaurantItem= document.createElement('div')
+    restaurantItem.className="restautant-card"
+    restaurantItem.innerHTML = 
+    `
+      <img src="${winningRestaurant.logoUrl}" class="restaurant-img">
+      <div class="restaurant-info">
+      <h3>${winningRestaurant.name}</h3>
+      </div>`
+
+      resturantsContainer.appendChild(restaurantItem)
+      winnerSelected=true
 }
 
 
