@@ -4,15 +4,13 @@ import { getRestaurants } from "../data/restaurants.js"
 
 
 let restaurantOptions = getRestaurants()
-//console.log(`RestaurantOptions length: ${restaurantOptions.length}`)
-
-//console.log("Restaurants:")
-//console.dir(restaurantOptions)
 
 //this object will store the choices the user selects
 let userChoices = {}
 
 let userFoodResults={}
+
+let foodOptionsCreated= false
 
 let winningRestaurant
 
@@ -20,6 +18,8 @@ let winningRestaurant
 /*---- Cached Element References ----*/
 
 const startBtn = document.querySelector("#start-button")
+
+const restartBtn= document.querySelector("#restartBtn")
 
 const submitBtn = document.querySelector("#submit-button")
 
@@ -51,6 +51,8 @@ const resturantsContainer= document.getElementById('restaurants-container')
 
 startBtn.addEventListener('click', init)
 
+restartBtn.addEventListener('click', init)
+
 submitBtn.addEventListener('click', updateRestaurantOptions)
 
 foodTypeChoices.addEventListener('change', updateUserChoices)
@@ -76,6 +78,11 @@ function init(){
   
   displayGameContainer(gameContainer)
   startGameTimer()
+  foodOptions= []
+
+  statusMessage.textContent=''
+  restartBtn.classList.add("hidden")
+
 
   //generates options based on what's available in restaurantChoices
 
@@ -85,15 +92,23 @@ function init(){
   /*START OF FOOD OPTIONS */
 
   //initiate food types options available
+  console.dir(foodOptions)
+
+  
   for(let idx=0;idx<restaurantOptions.length;idx++){
     if(!foodOptions.includes((restaurantOptions[idx]).foodType)){
-    foodOptions.push(restaurantOptions[idx].foodType)
+      foodOptions.push(restaurantOptions[idx].foodType)
     }
   }
+    
+  
+
+
 
   console.dir(foodOptions)
 
   //loops through initial food type options from initial restaurant options
+  if(foodOptions.length ===0){
   for(let idx=0;idx<foodOptions.length;idx++){
     let item= document.createElement("option")
     foodTypeChoices.appendChild(item)
@@ -102,6 +117,7 @@ function init(){
 
   /*END OF FOOD OPTIONS */
   }
+}
 }
 
 function displayGameContainer(gameContainer){
@@ -153,9 +169,9 @@ function updateUserChoices(evt){
 
 /*----------- Timer ----------*/
 
-let timeLeft= 60
-
 function startGameTimer(){
+
+  let timeLeft= 60
 
   gameTimer.classList.remove('inactive')
   gameTimer.classList.add('animate__animated','animate__bounceIn', 'animate__delay-1s')
@@ -165,21 +181,13 @@ function startGameTimer(){
     timeLeft -= 1
 
     if(timeLeft>0 && timeLeft<10){
-      gameTimer.style.color='red'
-      
+      gameTimer.style.color='red' 
     }
-
-    if (timeLeft === 0) {
-      gameTimer.textContent = 'Finished!'
+    else if (timeLeft === 0) {
+      gameTimer.textContent = 'Times up!'
       clearInterval(timer);
+      updateGameStatus()
     }
-
-    if(timeLeft>0 && winnerSelected){
-      clearInterval(timer);
-
-    }
-
-    gameTimer.classList.remove('animate__bounceIn')
 
 }, 1000)
 }
@@ -188,13 +196,21 @@ function updateGameStatus(){
   if(winnerSelected){
     statusMessage.textContent=`You've selected ${winningRestaurant.name}`
   }
+
+  else{
+    
+    // statusMessage.textContent="You were too slow to pick and place. Now you and your partner are starving!"
+
+     statusMessage.innerHTML= `<div id="loser-message"><h3>You were too slow to pick and place. Now you and your partner are starving!</h3>
+
+     <img src="https://media1.giphy.com/media/3ohzdNYjPSSEhSxF8Q/giphy.gif" class="loser-img"></img></div>`
+
+     restartBtn.classList.remove("hidden")
+  }
 }
 
 //updates restaurant options based on selections
 function updateRestaurantOptions(){
-
-  //console.log(`User Choices`)
-  //console.dir(userChoices)
 
   userFoodResults  = restaurantOptions.filter((item) => {
 

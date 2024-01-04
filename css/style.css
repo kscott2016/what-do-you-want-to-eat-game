@@ -24,7 +24,7 @@ body{
 
 
 #main>div:nth-child(1), #game-container>div:nth-child(1){
-  width:50%;
+  width:45%;
 }
 
 #main>div:nth-child(2), #game-container>div:nth-child(2){
@@ -41,6 +41,7 @@ body{
 
 #game-status{
 
+  padding: 50px;
   background-color: #003a75;;
   display:flex;flex-direction: column;
   align-items: center;
@@ -79,6 +80,7 @@ h2#game-message{
   justify-content: center;
   align-items: center;
   color: #fff;
+  padding: 50px;
   
 }
 
@@ -164,17 +166,33 @@ img.restaurant-img{
   color:#fff;
 }
 
-.restaurant-info>button {
+#final-result {
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.restaurant-info>button, #restartBtn {
   background-color:#ffaa00;
   color:#000;
   border:transparent;
 }
 
-.restaurant-info>button:hover{
+.restaurant-info>button:hover, #restartBtn:hover{
 
   background-color:#fff;
   color:#000;
 
+}
+
+#loser-message{
+
+  text-align: center;
+}
+
+.hidden{
+  display:none;
 }
 
 @media (max-width: 1359px) {
@@ -195,6 +213,7 @@ body{
   #image-box{
     justify-content: center;
     align-items: center;
+    
   }
 
 }
