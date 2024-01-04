@@ -86,18 +86,10 @@ h2{
 
   
 }
-
-
-
 .user-btns{
  
   margin:30px 0;
 }
-
-
-
-
-
 
 button{
   background-color: #003a75;
@@ -128,13 +120,9 @@ input, label, select{
   
 }
 
-select {
+select{
   border-right: 6px solid transparent;
   margin-right: 5px;
-}
-
-select{
- 
   border-radius: 50px;
   height:30px;
   width:250px;
@@ -152,6 +140,38 @@ div.user-option{
   margin-top:30px;
   gap:20px;
   
+}
+
+#restaurants-container{
+  display: flex;
+  flex-wrap: wrap;
+  gap:20px;
+}
+
+img.restaurant-img{
+  max-width: 250px;
+  border-radius: 30px;
+}
+
+.restaurant-info {
+  text-align: center;
+}
+
+.restaurant-info>h3 {
+  color:#fff;
+}
+
+.restaurant-info>button {
+  background-color:#ffaa00;
+  color:#000;
+  border:transparent;
+}
+
+.restaurant-info>button:hover{
+
+  background-color:#fff;
+  color:#000;
+
 }
 
 @media (max-width: 1359px) {

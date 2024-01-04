@@ -41,7 +41,7 @@ let gameContainer = document.getElementById('game-container')
 
 let statusMessage = document.getElementById('game-message')
 
-let resturantsSection= document.getElementById('restaurant-cards')
+let resturantsContainer= document.getElementById('restaurants-container')
 
 /*--------- Event Listeners ---------*/
 
@@ -59,7 +59,7 @@ userIndoorDining.addEventListener('click', updateUserChoices)
 
 userTakeout.addEventListener('click', updateUserChoices)
 
-random.addEventListener('click', selectRandomRestaurant)
+//random.addEventListener('click', selectRandomRestaurant)
 
 
 
@@ -193,27 +193,47 @@ let isEmpty=(obj)=>{
     console.log("No matches found! Try again or receive a random restaurant suggestion")
   }
   else{
-    renderRestaurants(userFoodResults)
+    render(userFoodResults)
   }
 
-  
-}
- 
-
-function selectRandomRestaurant(){
-
-  let randomIdx= Math.floor(Math.random() * restaurantOptions.length)
-
-  console.dir(restaurantOptions[randomIdx])
-
-
-  renderRestaurants(restaurantOptions[randomIdx])
-
-  //return restaurantOptions[randomIdx]
 }
 
-function renderRestaurants(userFoodResults){
+// function selectRandomRestaurant(){
 
-  console.dir(userFoodResults)
+//   let randomIdx= Math.floor(Math.random() * restaurantOptions.length)
+
+//   console.dir(restaurantOptions[randomIdx])
+
+
+//   render(restaurantOptions[randomIdx])
+
+//   //return restaurantOptions[randomIdx]
+// }
+
+function render(userFoodResults){
+
+  //console.log("render func reached")
+
+  let restaurantItem
+
+  resturantsContainer.innerHTML = ''
+
+  userFoodResults.forEach((result) => {
+    //console.log("Item: " + result.name)
+    
+   restaurantItem= document.createElement('div')
+    restaurantItem.className="restautant-card"
+    restaurantItem.innerHTML = 
+    `
+      <img src="${result.logoUrl}" class="restaurant-img">
+      <div class="restaurant-info">
+      <h3>${result.name}</h3>
+      <button class="winning-choice">I chose this place</button>
+      </div>`
+
+      resturantsContainer.appendChild(restaurantItem)
+  })
 
 }
+
+
