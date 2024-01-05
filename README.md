@@ -21,3 +21,4 @@
 - [] A health bar/hunger bar is at the bottom. The emotion changes based on time left (happy to hangry).
 - [] Give the user the ability to input restaurants to add to restaurant data for future use
 - [] Create a field that asks the user for certain food items. This field will be used to find restaurants that features these food items in their own menus
+- [] Improve responsiveness
