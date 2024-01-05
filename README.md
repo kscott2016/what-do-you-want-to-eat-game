@@ -25,9 +25,11 @@ What the heck do you want to eat is the solution for indecisive folks and their 
 
 - Favicon image was downloaded from [Flaticon](https://www.flaticon.com/free-icons/hamburger)
 
+- Used Bubblegum Sans font from [Google Fonts](https://fonts.google.com/specimen/Bubblegum+Sans/about)
+
 ## Ice Box 🧊
 
 - [] A health bar/hunger bar is at the bottom. The emotion changes based on time left (happy to hangry).
 - [] Give the user the ability to input restaurants to add to restaurant data for future use
 - [] Create a field that asks the user for certain food items. This field will be used to find restaurants that features these food items in their own menus
-- [] Make a mobile firendly version
+- [] Make a mobile friendly version
