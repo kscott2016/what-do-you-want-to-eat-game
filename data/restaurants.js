@@ -30,7 +30,7 @@ const restaurants = [
     offersCocktails:false,
     offersIndoorDining: true,
     recentVisit:false,
-    logoUrl:"https://i.pinimg.com/originals/a9/90/9c/a9909c24d2dd1a8fe82e953120349384.jpg"
+    logoUrl:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7QjzRlAN3XGnVxo08e_IL7G1zH_rXyQe62w&usqp=CAU"
   },
   
   {
@@ -166,14 +166,14 @@ const restaurants = [
   },
 
   {
-    name: "Batter N' Berries",
+    name: "Batter & Berries",
     foodType: "brunch",
     avgPrice: 50,
     offersTakeout:true,
     offersCocktails:true,
     offersIndoorDining: true,
     recentVisit:false,
-    logoUrl:"https://fastly.4sqi.net/img/general/600x600/77773384_g9f5aGM2dNW2goNFVGE4KnifLKQyYm7UsyKzs1nGJsA.jpg"
+    logoUrl:"https://d2s742iet3d3t1.cloudfront.net/restaurants/restaurant-147258000000000000/restaurant/images/rest-ef089f60-c075-482b-803e-6a30d1676385.jpg?size=medium"
   },
 
   {
@@ -184,7 +184,7 @@ const restaurants = [
     offersCocktails:true,
     offersIndoorDining: true,
     recentVisit:false,
-    logoUrl:"https://fastly.4sqi.net/img/general/600x600/77773384_g9f5aGM2dNW2goNFVGE4KnifLKQyYm7UsyKzs1nGJsA.jpg"
+    logoUrl:"https://static.wixstatic.com/media/17c648_2192a35a8203474aa29e458d6e55d612~mv2.jpg/v1/fill/w_1000,h_601,al_c,q_85,usm_0.66_1.00_0.01/17c648_2192a35a8203474aa29e458d6e55d612~mv2.jpg"
   },
 
   {
@@ -217,7 +217,51 @@ const restaurants = [
     offersCocktails:false,
     offersIndoorDining: true,
     recentVisit:false,
-    logoUrl:"https://fastly.4sqi.net/img/general/600x600/77773384_g9f5aGM2dNW2goNFVGE4KnifLKQyYm7UsyKzs1nGJsA.jpg"
+    logoUrl:"https://img.cdn4dd.com/cdn-cgi/image/fit=cover,width=600,height=400,format=auto,quality=80/https://doordash-static.s3.amazonaws.com/media/store/header/5d49d216-65a2-404b-a76e-b6da5e5db3e4.jpg"
+  },
+
+  {
+    name: "Eiffel Waffle",
+    foodType: "dessert",
+    avgPrice: 25,
+    offersTakeout:true,
+    offersCocktails:false,
+    offersIndoorDining: true,
+    recentVisit:false,
+    logoUrl:"https://i.ytimg.com/vi/VxHbfZYNnQI/maxresdefault.jpg"
+  },
+
+  {
+    name: "Oberweis",
+    foodType: "dessert",
+    avgPrice: 25,
+    offersTakeout:true,
+    offersCocktails:false,
+    offersIndoorDining: true,
+    recentVisit:false,
+    logoUrl:"https://www.enjoyaurora.com/member_photos/oberweis-northaurora-enjoyaurora.jpg"
+  },
+
+  {
+    name: "Crumbl Cookies",
+    foodType: "dessert",
+    avgPrice: 14,
+    offersTakeout:true,
+    offersCocktails:false,
+    offersIndoorDining: false,
+    recentVisit:false,
+    logoUrl:"https://www.inmaricopa.com/wp-content/uploads/2022/12/Photo-11-LOGO.png"
+  },
+
+  {
+    name: "Nothing Bundt Cakes",
+    foodType: "dessert",
+    avgPrice: 12,
+    offersTakeout:true,
+    offersCocktails:false,
+    offersIndoorDining: false,
+    recentVisit:false,
+    logoUrl:"https://img.cdn4dd.com/cdn-cgi/image/fit=cover,width=600,height=400,format=auto,quality=80/https://doordash-static.s3.amazonaws.com/media/store/header/9f9bdcc3-fa2b-4a1e-b92a-c423e42cc8fb.jpg"
   },
 
 ]
