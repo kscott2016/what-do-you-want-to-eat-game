@@ -77,8 +77,6 @@ restartBtn.addEventListener('click', restartGame )
 /*---- Functions ----*/
 
 function initVariables(){
- 
-  //random.classList.add("hidden")
 
    //makes userChoices obj empty since initialized
   userChoices = {}
@@ -166,10 +164,7 @@ function updateUserChoices(evt){
 
 function startGameTimer(){
 
-  timeLeft= 600
-
-  //.classList.remove('inactive')
-  //gameTimer.classList.add('animate__animated','animate__bounceIn', 'animate__delay-1s')
+  timeLeft= 60
 
   timer = setInterval(function() {
     gameTimer.textContent = timeLeft + ' seconds'
@@ -230,8 +225,6 @@ function updateGameStatus(timeLeft){
 
   else{
     
-    // statusMessage.textContent="You were too slow to pick and place. Now you and your partner are starving!"
-
     statusMessage.innerHTML= `<div id="loser-message"><h3>You were too slow to pick a place. Now you and your partner are starving!</h3>
 
     <img src="https://media1.giphy.com/media/3ohzdNYjPSSEhSxF8Q/giphy.gif" class="loser-img animate__animated animate__zoomInLeft"></div>`
@@ -281,27 +274,20 @@ function selectRandomRestaurant(){
 
   random.classList.add("hidden")
   statusMessage.innerHTML=''
-  //statusMessage.classList.add("hidden")
-  //statusMessage.style.removeProperty('display')
 
   console.log("Game Status elem: ")
   console.dir(statusMessage)
   render(userFoodResults)
-
-  //return restaurantOptions[randomIdx]
 }
 
 function render(restaurantList){
-
-  //console.log("render func reached")
 
   let restaurantItem
 
   resturantsContainer.innerHTML = ''
     restaurantList.forEach((result,idx) => {
-      //console.log("Item: " + result.name)
       console.dir(result)
-    restaurantItem= document.createElement('div')
+      restaurantItem= document.createElement('div')
       restaurantItem.className="restautant-card"
       restaurantItem.innerHTML = 
       `
@@ -361,13 +347,8 @@ function restartGame(){
   winningRestaurant = null
   winnerSelected =false
   restartBtn.classList.add("hidden")
- 
-  foodOptions=[]
 
-  //clear the dropdownn node list of food options
-  // console.log("Clearing food type options")
-  // console.log("All of the current options: ",foodTypeOptions)
-  // console.log(`Food Type Options Length: ${foodTypeOptions.length}`)
+  foodOptions=[]
 
   //checks to see if foodType field options exists 
   if(foodTypeOptions?.length && foodTypeOptions.options){
