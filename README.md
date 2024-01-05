@@ -14,7 +14,7 @@
 
 - The animations used in this project utilized code from [animate.css](https://animate.style/)
 
-- Favicon image was downloaded from [Freepik](https://www.flaticon.com/free-icons/hamburger)
+- Favicon image was downloaded from [Flaticon](https://www.flaticon.com/free-icons/hamburger)
 
 ## Ice Box 🧊
 
