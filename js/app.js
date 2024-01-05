@@ -271,6 +271,18 @@ function render(restaurantList){
   let restaurantItem
 
   resturantsContainer.innerHTML = ''
+
+  //if random button was selected and only one restrant is displayed
+
+  if(restaurantList.length===1){
+
+    statusMessage.innerHTML=`<button id="random">Select another random restaurant?</button>`
+
+    random = document.querySelector("#random")
+    random.addEventListener('click', selectRandomRestaurant)
+
+  }
+
     restaurantList.forEach((result,idx) => {
       
       restaurantItem= document.createElement('div')
