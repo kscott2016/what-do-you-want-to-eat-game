@@ -155,7 +155,7 @@ function startGameTimer(){
   timeLeft= 60
 
   timer = setInterval(function() {
-    gameTimer.textContent = (timeLeft-1) + ' seconds'
+    gameTimer.textContent = timeLeft + ' seconds'
     timeLeft -= 1
 
     timerInterval = setTimeout(() => {
