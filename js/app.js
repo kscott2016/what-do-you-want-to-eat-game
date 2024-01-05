@@ -12,6 +12,10 @@ let userFoodResults={}
 
 let winningRestaurant
 
+let timer
+
+let timeLeft
+
 
 /*---- Cached Element References ----*/
 
@@ -74,7 +78,7 @@ restartBtn.addEventListener('click', restartGame )
 
 function initVariables(){
  
-  restartBtn.classList.add("hidden")
+  //random.classList.add("hidden")
 
    //makes userChoices obj empty since initialized
   userChoices = {}
@@ -87,6 +91,9 @@ function startGame(){
   startBtn.classList.add("hidden")
   displayGameContainer(gameContainer)
   startGameTimer()
+
+  console.log("Timer: ", timer)
+  console.log("Time Left: ", timeLeft)
   
   //generates options based on what's available in restaurantChoices
 
@@ -159,12 +166,12 @@ function updateUserChoices(evt){
 
 function startGameTimer(){
 
-  let timeLeft= 60
+  timeLeft= 600
 
   //.classList.remove('inactive')
   //gameTimer.classList.add('animate__animated','animate__bounceIn', 'animate__delay-1s')
 
-  let timer = setInterval(function() {
+  timer = setInterval(function() {
     gameTimer.textContent = timeLeft + ' seconds'
     timeLeft -= 1
 
@@ -217,11 +224,8 @@ function updateGameStatus(timeLeft){
 
     random = document.querySelector("#random")
     random.addEventListener('click', selectRandomRestaurant)
-
-    console.log(`random: `, random)
-
-  
-
+    
+    
   }
 
   else{
@@ -275,7 +279,13 @@ function selectRandomRestaurant(){
 
   userFoodResults=randomRestaurantList
 
+  random.classList.add("hidden")
+  statusMessage.innerHTML=''
+  //statusMessage.classList.add("hidden")
+  //statusMessage.style.removeProperty('display')
 
+  console.log("Game Status elem: ")
+  console.dir(statusMessage)
   render(userFoodResults)
 
   //return restaurantOptions[randomIdx]
@@ -338,6 +348,7 @@ function renderWinner(evt){
 function restartGame(){
 
    //re-initialize items
+  clearInterval(timer)
   statusMessage.textContent=''
   resturantsContainer.textContent=''
   gameTimer.textContent=''
@@ -346,14 +357,20 @@ function restartGame(){
   userCocktails.checked=false
   userIndoorDining.checked= false
   userTakeout.checked= false
-
+  userChoices ={}
+  winningRestaurant = null
+  winnerSelected =false
+  restartBtn.classList.add("hidden")
+ 
   foodOptions=[]
 
   //clear the dropdownn node list of food options
-  console.log("Clearing food type options")
-  console.log("All of the current options: ",foodTypeOptions)
-  console.log(`Food Type Options Length: ${foodTypeOptions.length}`)
-  if(foodTypeOptions.length>0){
+  // console.log("Clearing food type options")
+  // console.log("All of the current options: ",foodTypeOptions)
+  // console.log(`Food Type Options Length: ${foodTypeOptions.length}`)
+
+  //checks to see if foodType field options exists 
+  if(foodTypeOptions?.length && foodTypeOptions.options){
     for(let idx=foodTypeOptions.options.length-1;idx>=0;idx--){
       console.log("The option is:",foodTypeOptions[idx])
       foodTypeOptions.remove(idx)
