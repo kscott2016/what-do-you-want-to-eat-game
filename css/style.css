@@ -49,6 +49,10 @@ body{
 
 }
 
+#timer-message{
+  color:#ffe95c;
+}
+
 #game-timer{
   font-family: 'Bubblegum Sans', sans-serif;
   font-size:50px;
@@ -179,13 +183,14 @@ img.restaurant-img{
   align-items: center;
 }
 
-.restaurant-info>button, #restartBtn {
+.restaurant-info>button, #restartBtn, #random {
   background-color:#ffaa00;
   color:#000;
   border:transparent;
+  margin:20px 0;
 }
 
-.restaurant-info>button:hover, #restartBtn:hover{
+.restaurant-info>button:hover, #restartBtn:hover, #random:hover{
 
   background-color:#fff;
   color:#000;
