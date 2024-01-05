@@ -14,6 +14,8 @@ let winningRestaurant
 
 let timer
 
+let timerInterval
+
 let timeLeft
 
 
@@ -89,9 +91,6 @@ function startGame(){
   startBtn.classList.add("hidden")
   displayGameContainer(gameContainer)
   startGameTimer()
-
-  console.log("Timer: ", timer)
-  console.log("Time Left: ", timeLeft)
   
   //generates options based on what's available in restaurantChoices
 
@@ -160,56 +159,44 @@ function updateUserChoices(evt){
   
 }
 
-/*----------- Timer ----------*/
-
 function startGameTimer(){
 
   timeLeft= 60
 
   timer = setInterval(function() {
-    gameTimer.textContent = timeLeft + ' seconds'
+    gameTimer.textContent = (timeLeft-1) + ' seconds'
     timeLeft -= 1
 
-    if(timeLeft>0 && timeLeft<10){
-      gameTimer.style.color='red'
-    }
+    timerInterval = setTimeout(() => {
+    
+      if (timeLeft === 0) {
 
-    else if(timeLeft ===10)
-    {
-      updateGameStatus(timeLeft)
+        displayLoser()
+        clearInterval(timer)
+      } 
+      else if(timeLeft===30){
+        statusMessage.innerHTML=`<h3 class="animate__animated animate__slideOutDown">Halfway done and still no decision, shame!</h3>`
+    
+      }
+      else if (timeLeft>0 && timeLeft <= 10) {
 
-    }
-
-    else if(timeLeft ===30)
-    {
-      updateGameStatus(timeLeft)
-
-    }
-    else if (timeLeft === 0) {
-      gameTimer.textContent = 'Times up!'
-      clearInterval(timer)
-      console.log(timer)
-      updateGameStatus()
-    }
+        gameTimer.style.color="red"
+        statusMessage.innerHTML=`<h3>All these options and you still can't pick one?</h3>`
+      }
+    }, 1000)
+   
+    
 
 }, 1000)
+
+
 }
 
-function updateGameStatus(timeLeft){
+function updateGameStatus(){
   if(winnerSelected){
     statusMessage.textContent=`You've selected ${winningRestaurant.name}`
 
     restartBtn.classList.remove("hidden")
-  }
-
-  else if(timeLeft===10){
-
-    statusMessage.innerHTML=`<img src="https://media0.giphy.com/media/fwcGzF1l2cILe/giphy.gif" class="loser-img animate__animated animate__zoomInLeft"><h3>All these options and you still can't pick one?</h3>`
-    
-  }
-
-  else if(timeLeft===30){
-    statusMessage.innerHTML=`<img src="https://i.pinimg.com/originals/b8/20/d2/b820d2ca59e7ff357d11e1cfa9a896c1.gif" class="loser-img animate__animated animate__zoomInLeft"><h3>Halfway done and still no decision, shame</h3>`
   }
 
   //if user fields do not match to any resturant 
@@ -219,21 +206,18 @@ function updateGameStatus(timeLeft){
 
     random = document.querySelector("#random")
     random.addEventListener('click', selectRandomRestaurant)
-    
-    
+ 
   }
+}
 
-  else{
-    
-    statusMessage.innerHTML= `<div id="loser-message"><h3>You were too slow to pick a place. Now you and your partner are starving!</h3>
+function displayLoser(){
 
-    <img src="https://media1.giphy.com/media/3ohzdNYjPSSEhSxF8Q/giphy.gif" class="loser-img animate__animated animate__zoomInLeft"></div>`
+  resturantsContainer.innerHTML=''
 
-    restartBtn.classList.remove("hidden")
-  }
-
-  
-  
+  gameTimer.innerHTML="Time's up!"
+        
+  statusMessage.innerHTML= `<div id="loser-message"><h3>You were too slow to pick a place. Now you and your partner are starving!</h3>
+  <img src="https://media1.giphy.com/media/3ohzdNYjPSSEhSxF8Q/giphy.gif" class="loser-img animate__animated animate__bounceInDown"></div>`
 }
 
 //updates restaurant options based on selections
