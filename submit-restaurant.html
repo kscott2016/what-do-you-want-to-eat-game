@@ -30,6 +30,36 @@
       <form>
         <label for="name">Restaurant Name:</label>
         <input class="form-field" type="text" id="name" name="name" >
+        <label for="name">What is the average cost of a meal for two people?</label>
+        <input class="form-field" type="number" id="price" name="avg_price">
+        <label for="cocktails">Does this place offer cocktails?</label>
+        <input type="checkbox" name="cocktails-yes" id="offersCocktails" />
+        <div class="user-option"></div>
+          <div id="indoorOrTakeout">
+            <label>Does this place offer dine-in, take out, or both?</label>
+            <input type="radio" id="offersIndoorDining" value="true" name="dineinOrTakeOut" />
+            <label for="true">Offers Dine In</label>
+            <input type="radio" id="offersTakeout" value="true" name="dineinOrTakeOut" />
+            <label for="takeout">Only Takeout</label>
+            <input type="radio" id="offersTakeout" value="true" name="dineinOrTakeOut" />
+            <label for="both">Offers Both</label>
+          </div>
+          <label for="pet-select">Choose a pet:</label>
+          <select name="type" id="type-select">
+            <option value="">--Please choose an option--</option>
+            <option value="italian">Italian</option>
+            <option value="fastfood">Fast Food</option>
+            <option value="maxican">Mexican</option>
+            <option value="asian">Asian</option>
+            <option value="seafood">Seafood</option>
+            <option value="french">French</option>
+            <option value="brunch">Brunch</option>
+            <option value="Dessert">Dessert</option>
+            <option value="american">American</option>
+            <option value="multiple">Offers Multiple Cusines</option>
+          </select>
+        <label for="image">Submit an image (please enter a url)</label>
+        <input class="form-field" type="text" id="restaurant-img" name="image" >
       </form>
     </div>
   </div>

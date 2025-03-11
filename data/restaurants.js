@@ -46,7 +46,7 @@ const restaurants = [
 
   {
     name: "Rising Sun",
-    foodType: "cantonese",
+    foodType: "asian",
     avgPrice: 25,
     offersTakeout:true,
     offersCocktails:false,
@@ -90,7 +90,7 @@ const restaurants = [
 
   {
     name: "Thi Thi Restaurant",
-    foodType: "thai",
+    foodType: "asian",
     avgPrice: 80,
     offersTakeout:true,
     offersCocktails:true,
@@ -101,7 +101,7 @@ const restaurants = [
 
   {
     name: "Jimmy's Dog House",
-    foodType: "hot dogs",
+    foodType: "fastfood",
     avgPrice: 25,
     offersTakeout:true,
     offersCocktails:false,
