@@ -22,6 +22,8 @@ let timeLeft
 
 const startBtn = document.querySelector("#start-button")
 
+const submitButton = document.querySelector("#submit-option")
+
 const timerMessage = document.querySelector("#timer-message")
 
 const restartBtn= document.querySelector("#restartBtn")
