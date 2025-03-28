@@ -77,6 +77,17 @@ resturantsContainer.addEventListener('click',renderWinner)
 
 restartBtn.addEventListener('click', restartGame )
 
+//submission event listeners 
+
+const submissionPriceLimit = document.querySelector("#newPrice")
+
+const newCocktails = document.querySelector("#new_offersCocktails")
+
+const newIndoorDining = document.querySelector("#newOffersIndoorDining")
+
+const newUserTakeout = document.querySelector("#ewOffersTakeout")
+
+
 /*---- Functions ----*/
 
 function initVariables(){
@@ -151,6 +162,16 @@ function updateUserChoices(evt){
   }
   
 }
+
+//function to write to JSON File
+
+fs = require('fs');
+var name = 'restaurants.js';
+var m = JSON.parse(fs.readFileSync(name).toString());
+m.forEach(function(p){
+    p.name= m.name;
+});
+fs.writeFileSync(name, JSON.stringify(m));
 
 function startGameTimer(){
 
@@ -274,7 +295,7 @@ function render(restaurantList){
 
   resturantsContainer.innerHTML = ''
 
-  //if random button was selected and only one restrant is displayed
+  //if random button was selected and only one restaurant is displayed
 
   if(restaurantList.length===1){
 
