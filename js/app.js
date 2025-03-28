@@ -1,11 +1,14 @@
 /*-------------------- ---Constants-----------------------*/
 
-import { getRestaurants } from "../data/restaurants.js"
+//import { getRestaurants } from "../data/restaurants.js"
+//import restaurants from "../data/restaurants.json";
 
-let restaurantOptions = getRestaurants()
-
+import * as restaurants from '../data/restaurants.json';
+console.log(restaurants);
 //this object will store the choices the user selects
 let userChoices = {}
+
+let theRestaurants = []
 
 let userFoodResults={}
 
@@ -90,12 +93,25 @@ const newUserTakeout = document.querySelector("#ewOffersTakeout")
 
 /*---- Functions ----*/
 
+
+
 function initVariables(){
 
    //makes userChoices obj empty since initialized
   userChoices = {}
+  theRestaurants = getRestaurants()
 
   startGame()
+}
+
+//function to write to JSON File
+
+function getRestaurants(){
+  //let restaurantOptions = require('../data/restaurants.json');
+  //console.log(restaurantOptions);
+  //theRestaurants.push(restaurantOptions);
+
+  
 }
 
 function startGame(){
@@ -162,16 +178,6 @@ function updateUserChoices(evt){
   }
   
 }
-
-//function to write to JSON File
-
-fs = require('fs');
-var name = 'restaurants.js';
-var m = JSON.parse(fs.readFileSync(name).toString());
-m.forEach(function(p){
-    p.name= m.name;
-});
-fs.writeFileSync(name, JSON.stringify(m));
 
 function startGameTimer(){
 
