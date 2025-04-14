@@ -1,5 +1,6 @@
-{
-   ""name"": "Bonefish Grill",
+[
+   {
+    "name": "Bonefish Grill",
     "foodType": "seafood",
     "avgPrice": 100,
     "offersTakeout":true,
@@ -260,4 +261,9 @@
     "offersIndoorDining": false,
     "recentVisit":false,
     "logoUrl":"https://img.cdn4dd.com/cdn-cgi/image/fit=cover,width=600,height=400,format=auto,quality=80/https://doordash-static.s3.amazonaws.com/media/store/header/9f9bdcc3-fa2b-4a1e-b92a-c423e42cc8fb.jpg"
-  },
+  }
+]
+
+
+
+

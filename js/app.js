@@ -3,12 +3,29 @@
 //import { getRestaurants } from "../data/restaurants.js"
 //import restaurants from "../data/restaurants.json";
 
-import * as restaurants from '../data/restaurants.json';
-console.log(restaurants);
+  
+//import * as restaurants from '../data/restaurants.json';
+import restaurants from "../data/restaurants.json" with {type: "json"}
+
 //this object will store the choices the user selects
 let userChoices = {}
 
-let theRestaurants = []
+let theRestaurants = [] = restaurants
+//console.log("Restaurants: " +  theRestaurants[1].name);
+
+function listFoodTypes(){
+  let theList=[]
+  for (let i= 0;i<theRestaurants.length;i++){
+    if (!(theList.includes(theRestaurants[i].foodType))){
+      theList.push(theRestaurants[i].foodType)
+    }
+  }
+  theList = theList.sort()
+  
+  return theList
+}
+
+let foodTypes = listFoodTypes()
 
 let userFoodResults={}
 
@@ -33,11 +50,20 @@ const restartBtn= document.querySelector("#restartBtn")
 
 const submitBtn = document.querySelector("#submit-button")
 
-let foodOptions = []
-
-const foodTypeChoices = document.querySelector("#foodTypes")
+const foodTypeChoiceList = document.querySelector("#foodTypesList")
 
 let foodTypeOptions = document.getElementsByClassName('foodTypeOption')
+
+  //loops through initial food type options from initial restaurant options
+  
+  for(let idx=0;idx<foodTypes.length;idx++){
+    let item= document.createElement("option")
+    foodTypeChoiceList.appendChild(item)
+    item.innerHTML = foodTypes[idx]
+    item.setAttribute("value", foodTypes[idx])
+    item.classList.add("foodTypeOption")
+  }
+
 
 const userPriceLimit = document.querySelector("#maxPrice")
 
@@ -66,7 +92,7 @@ startBtn.addEventListener('click', restartGame)
 
 submitBtn.addEventListener('click', updateRestaurantOptions)
 
-foodTypeChoices.addEventListener('change', updateUserChoices)
+foodTypeChoiceList.addEventListener('change', updateUserChoices)
 
 userPriceLimit.addEventListener('input', updateUserChoices)
 
@@ -88,57 +114,35 @@ const newCocktails = document.querySelector("#new_offersCocktails")
 
 const newIndoorDining = document.querySelector("#newOffersIndoorDining")
 
-const newUserTakeout = document.querySelector("#ewOffersTakeout")
+const newUserTakeout = document.querySelector("#newOffersTakeout")
+
+const newFoodTypeList= document.querySelector("#foodTypesList")
 
 
 /*---- Functions ----*/
-
-
 
 function initVariables(){
 
    //makes userChoices obj empty since initialized
   userChoices = {}
-  theRestaurants = getRestaurants()
+  //theRestaurants = getRestaurants()
 
   startGame()
 }
 
 //function to write to JSON File
 
-function getRestaurants(){
+//function getRestaurants(){
   //let restaurantOptions = require('../data/restaurants.json');
   //console.log(restaurantOptions);
   //theRestaurants.push(restaurantOptions);
-
-  
-}
+//}
 
 function startGame(){
   
   startBtn.classList.add("hidden")
   displayGameContainer(gameContainer)
   startGameTimer()
-  
-  //generates options based on what's available in restaurantChoices
-
-  //initiate food types options available
-  
-  for(let idx=0;idx<restaurantOptions.length;idx++){
-    if(!foodOptions.includes((restaurantOptions[idx]).foodType)){
-      foodOptions.push(restaurantOptions[idx].foodType)
-    }
-  }
-
-  //loops through initial food type options from initial restaurant options
-  
-  for(let idx=0;idx<foodOptions.length;idx++){
-    let item= document.createElement("option")
-    foodTypeChoices.appendChild(item)
-    item.innerHTML = foodOptions[idx]
-    item.setAttribute("value", foodOptions[idx])
-    item.classList.add("foodTypeOption")
-  }
 
 }
 
@@ -366,7 +370,7 @@ function restartGame(){
   resturantsContainer.textContent=''
   gameTimer.textContent=''
   gameTimer.classList.remove("hidden")
-  foodTypeChoices.value=''
+  foodTypeOptions.value=''
   userPriceLimit.value=''
   userCocktails.checked=false
   userIndoorDining.checked= false
@@ -380,12 +384,11 @@ function restartGame(){
   timerMessage.innerHTML=''
 
 
-  foodOptions=[]
+ // foodOptions=[]
 
   //checks to see if foodType field options exists 
   if(foodTypeOptions?.length && foodTypeOptions.options){
     for(let idx=foodTypeOptions.options.length-1;idx>=0;idx--){
-      
       foodTypeOptions.remove(idx)
     }
   }
