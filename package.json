@@ -2,7 +2,8 @@
   "name": "what-do-you-want-to-eat-game",
   "version": "1.0.0",
   "description": "![game-screenshot](https://github.com/kscott2016/what-do-you-want-to-eat-game/blob/master/img/Screenshot%202024-01-04%20at%201.56.05%20PM.png?raw=true)",
-  "main": "index.js",
+  "main": "./js/app.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,6 +11,7 @@
     "type": "git",
     "url": "git+https://github.com/kscott2016/what-do-you-want-to-eat-game.git"
   },
+  "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
@@ -17,6 +19,9 @@
   },
   "homepage": "https://github.com/kscott2016/what-do-you-want-to-eat-game#readme",
   "dependencies": {
-    "validator": "^13.15.0"
+    "express": "^5.1.0",
+    "file-uri-to-path": "^2.0.0",
+    "readfile": "^1.0.1",
+    "require": "^0.4.4"
   }
 }

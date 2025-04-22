@@ -10,15 +10,15 @@
   type="image/png" 
   sizes="32x32"
 >
-  <link rel="stylesheet" href="./css/style.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="./css/style.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Bungee+Spice&display=swap" rel="stylesheet">
 <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
   />
-  <script defer src="./js/app.js" type="module"></script>
+<script type="module" src="./js/submission.js"></script>
   <title>What the heck do you want to eat? </title>
 </head>
 
@@ -29,27 +29,27 @@
     <div id="restaurantForm">
       <form>
         <label for="name">Restaurant Name:</label>
-        <input class="form-field" type="text" id="new_name" name="name" >
+        <input class="form-field" type="text" id="name" name="name" >
         <label for="name">What is the average cost of a meal for two people?</label>
-        <input class="form-field" type="number" id="new_price" name="avg_price">
+        <input class="form-field" type="number" id="avgPrice" name="avg_price">
         <label for="cocktails">Does this place offer cocktails?</label>
-        <input type="checkbox" name="cocktails-yes" id="new_offersCocktails" />
+        <input type="checkbox" name="cocktails-yes" id="offersCocktails" />
         <div class="user-option"></div>
-          <div id="new_indoorOrTakeout">
+          <div id="offersIndoorOrTakeout">
             <label>Does this place offer dine-in, take out, or both?</label>
-            <input type="radio" id="newOffersIndoorDining" value="true" name="dineinOrTakeOut" />
-            <label for="true">Offers Dine In</label>
-            <input type="radio" id="newOffersTakeout" value="true" name="dineinOrTakeOut" />
+            <input type="radio" id="offersIndoorDining" value="true" name="dineinOrTakeOut" />
+            <label for="true">Offers Only Dine In</label>
+            <input type="radio" id="offersTakeout" value="true" name="dineinOrTakeOut" />
             <label for="takeout">Only Takeout</label>
-            <input type="radio" id="newOffersTakeout" value="true" name="dineinOrTakeOut" />
+            <input type="radio" id="offersBoth" value="true" name="dineinOrTakeOut" />
             <label for="both">Offers Both</label>
           </div>
           <label for="food-type-select">Choose a food type:</label>
-          <select name="food-options" id="foodTypesList">
+          <select name="food-options" id="foodType">
             <option value="">Select Food Type</option>
           </select>
         <label for="image">Submit an image (please enter a url)</label>
-        <input class="form-field" type="text" id="new_restaurant-img" name="image" >
+        <input class="form-field" type="text" id="logoUrl" name="image" >
         <div class="user-btns">
           <button id="new_submit-button">Submit button</button>
         </div>

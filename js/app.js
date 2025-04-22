@@ -1,17 +1,38 @@
 /*-------------------- ---Constants-----------------------*/
 
-//import { getRestaurants } from "../data/restaurants.js"
-//import restaurants from "../data/restaurants.json";
-
-  
-//import * as restaurants from '../data/restaurants.json';
+//imports array of objects data from json 
 import restaurants from "../data/restaurants.json" with {type: "json"}
-
 //this object will store the choices the user selects
+
+//import express from '../node_modules/express/index';
+// import express from 'express'
+
+// //const express = require('express')
+// const app = express()
+// const port = 5500
+
+// app.get('/', (req, res) => {
+//   res.send('Hello World!');
+// });
+
+// app.listen(port, () => {
+//   console.log('Server listening on port 5500');
+// });
+
+//import require from 'require'
+import fs from 'fs'
+const filePath = '../data/restaurants.json'
+const jsonData = fs.readFileSync(filePath, 'utf-8')
+
+const data = JSON.parse(jsonData);
+console.log(`Data parsed: ${data[6].name}`)
+
+
+
 let userChoices = {}
 
+
 let theRestaurants = [] = restaurants
-//console.log("Restaurants: " +  theRestaurants[1].name);
 
 function listFoodTypes(){
   let theList=[]
@@ -37,12 +58,12 @@ let timerInterval
 
 let timeLeft
 
+let restaurantOptions = []
+
 
 /*---- Cached Element References ----*/
 
 const startBtn = document.querySelector("#start-button")
-
-const submitButton = document.querySelector("#submit-option")
 
 const timerMessage = document.querySelector("#timer-message")
 
@@ -106,19 +127,6 @@ resturantsContainer.addEventListener('click',renderWinner)
 
 restartBtn.addEventListener('click', restartGame )
 
-//submission event listeners 
-
-const submissionPriceLimit = document.querySelector("#newPrice")
-
-const newCocktails = document.querySelector("#new_offersCocktails")
-
-const newIndoorDining = document.querySelector("#newOffersIndoorDining")
-
-const newUserTakeout = document.querySelector("#newOffersTakeout")
-
-const newFoodTypeList= document.querySelector("#foodTypesList")
-
-
 /*---- Functions ----*/
 
 function initVariables(){
@@ -132,11 +140,6 @@ function initVariables(){
 
 //function to write to JSON File
 
-//function getRestaurants(){
-  //let restaurantOptions = require('../data/restaurants.json');
-  //console.log(restaurantOptions);
-  //theRestaurants.push(restaurantOptions);
-//}
 
 function startGame(){
   
@@ -154,17 +157,18 @@ function displayGameContainer(gameContainer){
 
 function updateUserChoices(evt){
 
-
   //figures out key we're selecting so we can create a property in UserChoices object
 
   /*------ Handles checkbox for cocktails-------*/
   if((evt.target.checked) && (evt.target.id ==="offersCocktails")){
   
+    console.log("Cocktails clicked!");
     userChoices[evt.target.id]=true
   }
 
   else if((!(evt.target.checked)) && (evt.target.id ==="offersCocktails")){
 
+    console.log("Cocktails NOT clicked!");
     userChoices[evt.target.id]=false
   }
 
@@ -172,13 +176,15 @@ function updateUserChoices(evt){
 
   else if((evt.target.value==="true") && ((evt.target.id ==="offersIndoorDining")|| (evt.target.id ==="offersTakeout"))){
   
+    console.log("TakeOut clicked!");
     userChoices[evt.target.id]=true    
   }
 
   /*----- Handles other user input fields -----*/ 
   else{
     userChoices[evt.target.id]=evt.target.value
-  
+    //console.log("ID: "+ evt.target.id+ " Value: "+ evt.target.value);
+    //console.log("User selected this food type: "+ userChoices.foodTypesList)
   }
   
 }
@@ -230,7 +236,7 @@ function updateGameStatus(){
     restartBtn.classList.remove("hidden")
   }
 
-  //if user fields do not match to any resturant 
+  //if user fields do not match to any restaurant 
   else if(userFoodResults.length===0){
 
     statusMessage.innerHTML=`<h3>No matches found! Try again or receive a random restaurant suggestion</h3><button id="random">Select a random restaurant?</button><img src="https://media2.giphy.com/media/hyyV7pnbE0FqLNBAzs/giphy.gif" class="loser-img animate__animated animate__zoomInLeft">`
@@ -262,11 +268,13 @@ function displayLoser(){
 //updates restaurant options based on selections
 function updateRestaurantOptions(){
 
-  userFoodResults  = restaurantOptions.filter((item) => {
+  //userFoodResults  = restaurantOptions.filter((item) => {
 
-  return (item.foodType===userChoices.foodTypes) && (item.avgPrice<= parseInt(userChoices.maxPrice)) && ((item.offersCocktails === userChoices.offersCocktails|| !userChoices.hasOwnProperty('offersCocktails')))&&((userChoices.hasOwnProperty('offersTakeout')&& item.offersTakeout)|| !userChoices.hasOwnProperty('offersTakeout')) && ((userChoices.hasOwnProperty('offersIndoorDining')&& item.offersIndoorDining)|| !userChoices.hasOwnProperty('offersIndoorDining'))}
-  
-  )
+  userFoodResults = theRestaurants.filter((item) => {
+    
+    return (item.foodType===userChoices.foodTypesList) && (item.avgPrice<= parseInt(userChoices.maxPrice)) && ((item.offersCocktails === userChoices.offersCocktails|| !userChoices.hasOwnProperty('offersCocktails')))&&((userChoices.hasOwnProperty('offersTakeout')&& item.offersTakeout)|| !userChoices.hasOwnProperty('offersTakeout')) && ((userChoices.hasOwnProperty('offersIndoorDining')&& item.offersIndoorDining)|| !userChoices.hasOwnProperty('offersIndoorDining'))
+  })
+
   //if no matches are found
   let isEmpty=(obj)=>{
   
@@ -382,9 +390,6 @@ function restartGame(){
   submitBtn.disabled = false
   submitBtn.style.opacity= "100%"
   timerMessage.innerHTML=''
-
-
- // foodOptions=[]
 
   //checks to see if foodType field options exists 
   if(foodTypeOptions?.length && foodTypeOptions.options){
