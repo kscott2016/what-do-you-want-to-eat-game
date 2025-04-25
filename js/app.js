@@ -7,27 +7,6 @@ import restaurants from "../data/restaurants.json" with {type: "json"}
 //import express from '../node_modules/express/index';
 // import express from 'express'
 
-// //const express = require('express')
-// const app = express()
-// const port = 5500
-
-// app.get('/', (req, res) => {
-//   res.send('Hello World!');
-// });
-
-// app.listen(port, () => {
-//   console.log('Server listening on port 5500');
-// });
-
-//import require from 'require'
-import fs from 'fs'
-const filePath = '../data/restaurants.json'
-const jsonData = fs.readFileSync(filePath, 'utf-8')
-
-const data = JSON.parse(jsonData);
-console.log(`Data parsed: ${data[6].name}`)
-
-
 
 let userChoices = {}
 

@@ -1,27 +1,4 @@
 import restaurants from "../data/restaurants.json" with {type: "json"}
-//import require from "../node_modules/require"
-// const express = require('express')
-
-// const app = express()
-// const port = 5500
-
-// app.listen(port, () => console.log(`Server has started on port: ${port}`))
-
-// app.get('/', (req, res) => {
-//     res.send('Hello from the backend!');
-//   });
-  
-//   app.listen(port, () => {
-//     console.log(`Server listening on port ${port}`);
-//   });
-
-//   fs.readFile('./submit-restaurant.html', 'utf8', (err, data) => {
-//     if (err) {
-//       console.error("Error reading the file:", err);
-//       return;
-//     }
-//     console.log("File content:", data);
-//   });
 
 /*---- Cached Element References ----*/
 
@@ -51,12 +28,13 @@ const newUserTakeout = document.querySelector("#offersTakeout")
 
 const newFoodTypeList= document.querySelector("#foodType")
 
+const element = document.getElementById('editor_holder')
+
 /*--------- Event Listeners ---------*/
 
 submitButton.addEventListener('click', submitNewRestaurant)
 
 newName.addEventListener('input', updateSubmission)
-
 
 function listFoodTypes(){
     let theList=[]

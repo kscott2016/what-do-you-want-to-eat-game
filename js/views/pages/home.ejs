@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link 
+  id="favicon" 
+  rel="icon"
+  href="./img/burger.png"
+  type="image/png" 
+  sizes="32x32"
+>
+  <link rel="stylesheet" href="./css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Bungee+Spice&display=swap" rel="stylesheet">
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+  <!-- <script defer src="/js/app.js" type="module"></script> -->
+  <script type="module" src="./js/app.js"></script>
+  <title>What the heck do you want to eat? </title>
+</head>
+
+<body>
+  <div id="main">
+    <div id="welcome-message">
+      <h1>What the heck do you want to eat?</h1>
+      <p> Welcome! Ever had an issue deciding on what you want to eat? Have a frustrated and hangry partner annoyed with you because you can't make up your damn mind?</p> 
+      
+      <p>Look no further, this game finally help you find great food options and help make your hangry partner happy and fed.</p>
+
+      <p>You'll have 60 seconds to select your options.</p>
+
+      <button id="start-button">Start the game</button>
+      <button id="submit-option"><a href="/submit-restaurant.html">Submit a restaurant</a></button>
+    </div>
+    <div id="image-box">
+      <img class="welcome-img" src="https://media2.giphy.com/media/E87jjnSCANThe/giphy.gif?cid=6c09b9522bgasvfd6mnqcwqdpgup3lolbf8yfloy74sshrij&ep=v1_gifs_search&rid=giphy.gif&ct=g" />
+      <h2>Don't let this be you, play the game!</h2>
+    </div>
+  </div>
+  
+  
+  <div id="game-container" class="inactive">
+  
+    <div id="user-options-container">
+      <h2>Select your options</h2>
+        <div class="user-option">
+          <label for="food-options">Select the type of food you want:</label>
+          <select name="food-options" id="foodTypesList">
+            <option value="">Select Food Type</option>
+          </select>
+        </div>
+        
+        <div class="user-option">
+          <label for="price-range">What is the max you're willing to spend (for 2 people):</label>
+          <input type="text" id="maxPrice" name="max-price">
+        </div>
+        
+        <div class="user-option">
+          <label for="cocktails">Want Cocktails?</label>
+          <input type="checkbox" name="cocktails-yes" id="offersCocktails" />
+        </div>
+        <div class="user-option"></div>
+          <div id="indoorOrTakeout">
+            <label>Would you like to dine-in or take out?</label>
+            <input type="radio" id="offersIndoorDining" value="true" name="dineinOrTakeOut" />
+            <label for="true">Dine In</label>
+            <input type="radio" id="offersTakeout" value="true" name="dineinOrTakeOut" />
+            <label for="takeout">Takeout</label>
+          </div>
+          <div class="user-btns">
+            <button id="submit-button">Submit your choices</button>
+          </div>
+        </div>
+
+        <div id="game-status">
+          <div id="game-timer"></div>
+            <div id="timer-message"></div>
+            <div id="game-message"></div>
+            <div id="restaurants-container"></div>
+            <button id="restartBtn" class="hidden">Play Again?</button>
+          
+          
+        </div>
+        
+    </div>
+      
+  </div>
+
+</body>
+</html>
