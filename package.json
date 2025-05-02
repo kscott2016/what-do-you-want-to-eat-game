@@ -2,9 +2,10 @@
   "name": "what-do-you-want-to-eat-game",
   "version": "1.0.0",
   "description": "![game-screenshot](https://github.com/kscott2016/what-do-you-want-to-eat-game/blob/master/img/Screenshot%202024-01-04%20at%201.56.05%20PM.png?raw=true)",
-  "main": "./js/app.js",
+  "main": "server.js",
   "type": "module",
   "scripts": {
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,8 +20,15 @@
   },
   "homepage": "https://github.com/kscott2016/what-do-you-want-to-eat-game#readme",
   "dependencies": {
+    "ejs": "^3.1.10",
     "express": "^5.1.0",
+    "express-session": "^1.18.1",
     "file-uri-to-path": "^2.0.0",
+    "http-errors": "^2.0.0",
+    "method-override": "^3.0.0",
+    "morgan": "^1.10.0",
+    "nodemon": "^3.1.10",
+    "path": "^0.12.7",
     "readfile": "^1.0.1",
     "require": "^0.4.4"
   }
